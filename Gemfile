@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.9'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -20,8 +20,30 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+
 gem 'jquery-rails'
-gem "nested_form", :git => 'https://github.com/ryanb/nested_form.git'
+#gem 'plazr_auth', :git => 'https://github.com/naps62/plazr_auth.git'
+gem 'cocoon'
+gem 'simple_form'
+
+group :development, :test do
+  # Rspec
+  gem 'rspec-rails', '~> 2.6'
+
+  # Spork
+  gem 'spork', '~> 0.9.0.rc2'
+  
+  # Guard
+  gem 'growl'
+  gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
+  gem 'guard-bundler'
+  gem 'guard-rspec'
+  gem 'guard-spork' 
+  
+  #FactoryGirl
+  gem 'factory_girl_rails'
+  gem 'faker'
+end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

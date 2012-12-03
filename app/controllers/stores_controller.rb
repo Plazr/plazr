@@ -3,15 +3,19 @@ class StoresController < ApplicationController
     @stores = Store.all
   end
   def new
-    @store=Store.new
-    @store.categorizings.build
+    @store=Store.new    
+    @categorize = @store.categorizes.build
   end
   def create
-    #raise params.inspect
     @store=Store.new(params[:store])
-    @store.save
-    flash[:notice] = "Successfully Created store."
-    redirect_to stores_path
+    respond_to do |format|
+    if @store.save
+      format.html { redirect_to(@store, :notice => 'Store was successfully created.') }
+    else
+      format.html { render :action => "new" }
+    end
+  end
+      
   end
   def edit
     @store = Store.find(params[:id])      

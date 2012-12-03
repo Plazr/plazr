@@ -1,23 +1,29 @@
-<%= nested_form_for @store do |f| %>
-	<%= f.label :name %><br>
-	<%= f.text_field :name %><br>
-	<%= f.label :description %><br>
-	<%= f.text_field :description %><br>
-	<%= f.label :email %><br>
-	<%= f.text_field :email %><br>
-	<%= f.label :phone %><br>
-	<%= f.text_field :phone %><br>
-	<%= f.label :url %><br>
-	<%= f.text_field :url %><br>
+<h1>New Store</h1>
+
+<%= simple_form_for @store do |f| %>
+	<%= render "shared/error_messages", :target => @store %>
 	
-	<h3> Categories</h3>
-	<% @store.categorizings.each do |categorizing| %>
-		<%= f.fields_for :categorizings, categorizing do |ct| %>
-			<%= ct.collection_select :store_category_id, StoreCategory.all, :id, :title %>
-			<%= ct.link_to_remove "Remove Category" %>
-		<% end %>
-	<% end %>
-	<p><%= f.link_to_add "Add Category", :categorizings %></p>
-	<%= f.submit %>
+	<%= f.label :name, "Title" %>
+	<%= f.text_field :name %><br>
+	<%= f.label :description, "Description" %>
+	<%= f.text_field :description %><br>
+	<%= f.label :email, "Email" %>
+	<%= f.text_field :email %><br>
+	<%= f.label :phone, "Phone" %>
+	<%= f.text_field :phone %><br>
+	<%= f.label :url, "URL" %>
+	<%= f.text_field :url %><br>
+
+  <h3>Categories</h3>
+  <div id='tasks'>
+    <%= f.simple_fields_for :categorizes do |task| %>
+      <%= render 'categorize_fields', :f => task %>
+  	<% end %>
+    <%= link_to_add_association 'Add Category', f, :categorizes %><br>
+	</div>
+  <p>
+  	<%= f.submit 'Save Store' %>
+  </p>
+
 <% end %>
 

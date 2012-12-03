@@ -1,20 +1,14 @@
 class Store < ActiveRecord::Base
-  attr_accessible :categorizings_attributes, :name, :description, :email, :phone, :url
+  attr_accessible :name, :description, :email, :phone, :url, :categorizes_attributes
   
-  has_many :store_categories, through: :categorizings
-  has_many :categorizings, :dependent => :destroy
+  validates :name, :email, presence: true
+  validates :phone, 
+            :numericality => true,
+            :length => { :minimum => 9, :maximum => 15 }
+  
+  has_many :categorizes
+  has_many :store_categories, through: :categorizes
     
-  accepts_nested_attributes_for :categorizings, :allow_destroy => true
-  
-  def categorizings_attributes=(categorizings_attributes)
-    categorizings_attributes.each do |attributes|
-      if categorizings.exists?(:id => attributes[1][:id])
-        if attributes[1][:_destroy] == "1"
-          categorizings.find(attributes[1][:id]).destroy  
-        end
-      else
-        categorizings.build({:store_category_id => attributes[1][:store_category_id]})
-      end
-    end
-  end
+  accepts_nested_attributes_for :categorizes, :allow_destroy => true
+  accepts_nested_attributes_for :store_categories, :allow_destroy => true
 end
