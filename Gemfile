@@ -22,11 +22,13 @@ end
 
 
 gem 'jquery-rails'
-#gem 'plazr_auth', :git => 'https://github.com/naps62/plazr_auth.git'
+gem 'plazr_auth', :git => 'https://github.com/Plazr/plazr_auth.git'
 gem 'cocoon'
 gem 'simple_form'
 
 group :development, :test do
+  #gem 'thin'
+
   # Rspec
   gem 'rspec-rails', '~> 2.6'
 
