@@ -1,0 +1,9 @@
+<h1><%= @payment_method.title %></h1>
+Description: <%= @payment_method.description %><br>
+
+<p>
+	<%= link_to "Edit", edit_payment_method_path(@payment_method) %>
+	<%= link_to "Delete", payment_method_path(@payment_method), method: :delete %>
+</p>
+
+<%= link_to "Back Payments Index ", payment_methods_path %>
