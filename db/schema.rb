@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121201152329) do
+ActiveRecord::Schema.define(:version => 20121205143633) do
 
   create_table "categorizes", :force => true do |t|
     t.integer "store_id"

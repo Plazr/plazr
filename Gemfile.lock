@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/Plazr/plazr_auth.git
-  revision: 0634a25246d35f24bf4a51300840ddcdb21a7d31
+  revision: 57bc63bf8e3b49880c1b06a5ccb1b057ca8c6ba2
   specs:
     plazr_auth (0.0.1)
       cancan (>= 1.6.8)
@@ -97,7 +97,7 @@ GEM
     guard-bundler (1.0.0)
       bundler (~> 1.0)
       guard (~> 1.1)
-    guard-rspec (2.3.0)
+    guard-rspec (2.3.1)
       guard (>= 1.1)
       rspec (~> 2.11)
     guard-spork (1.4.0)
@@ -123,7 +123,7 @@ GEM
       treetop (~> 1.4.8)
     method_source (0.8.1)
     mime-types (1.19)
-    multi_json (1.4.0)
+    multi_json (1.5.0)
     multipart-post (1.1.5)
     nokogiri (1.5.5)
     oa-core (0.0.5)

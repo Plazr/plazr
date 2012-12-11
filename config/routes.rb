@@ -1,5 +1,8 @@
 Plazr::Application.routes.draw do
-  #mount PlazrAuth::Engine => '/'
+
+  root to: 'application#index'
+
+  mount PlazrAuth::Engine => '/'
   
   resources :plazrrs
   resources :stores
