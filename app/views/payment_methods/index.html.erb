@@ -1,0 +1,12 @@
+<h1>All Payment Methods</h1>
+
+<ul>
+  <% @payment_methods.each do |method| %>
+    <li>
+      <%= link_to method.title, payment_method_path(method) %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "Create new Payment Method", new_payment_method_path %><br>
+<%= link_to "Back To Home", plazrrs_path %>

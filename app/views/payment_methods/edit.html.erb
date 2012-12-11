@@ -1,0 +1,20 @@
+<h1>Edit Payment Method</h1>
+
+<%= form_for(@payment_method) do |f| %>
+	<ul>
+	<% @payment_method.errors.full_messages.each do |error| %>
+		<li><%= error %></li>
+	<% end %>
+	</ul>
+	<p>
+		<%= f.label :title %><br>
+		<%= f.text_field :title %>
+	</p>
+	<p>
+		<%= f.label :description %><br>
+		<%= f.text_field :description %>
+	</p>
+	<p>
+		<%= f.submit %>
+	</p>
+<% end %>
