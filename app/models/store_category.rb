@@ -1,5 +1,5 @@
 class StoreCategory < ActiveRecord::Base
-  attr_accessible :title, :description
+  attr_accessible :title, :description, :parent
   
   has_many :categorizes
   has_many :stores, through: :categorizes

@@ -1,6 +1,6 @@
-<h1>Create Store Category</h1>
+<h1>Edit Store Category</h1>
 
-<%= form_for(@category) do |f| %>
+<%= form_for [:root,@category] do |f| %>
 	<ul>
 	<% @category.errors.full_messages.each do |error| %>
 		<li><%= error %></li>
@@ -13,6 +13,7 @@
 	<p>
 		<%= f.label :description %><br>
 		<%= f.text_field :description %>
+
 	</p>
 	<p>
 		<%= f.submit %>

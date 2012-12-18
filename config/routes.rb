@@ -6,11 +6,10 @@ Plazr::Application.routes.draw do
   
   resources :plazrrs
   resources :stores
-  resources :store_categories
   resources :payment_methods
 
   namespace :root do
     resources :users
-    
+    resources :store_categories
   end
 end

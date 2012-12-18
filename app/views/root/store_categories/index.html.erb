@@ -1,0 +1,15 @@
+<h1>All Store Categories</h1>
+
+<ul>
+  <% @categories.each do |category| %>
+    <% if (category.parent==nil) %>
+    <li>
+      <%= link_to category.title, root_store_category_path(category) %>
+      
+    </li>
+    <% end %>
+  <% end %>
+</ul>
+
+<%= link_to "Create new Store Category", new_root_store_category_path %><br>
+<%= link_to "Back To Home", plazrrs_path %>

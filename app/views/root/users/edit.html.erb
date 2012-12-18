@@ -1,6 +1,6 @@
 <h1>Edit User</h1>
 
-<%= form_for(@user) do |u| %>
+<%= form_for [:root,@user] do |u| %>
 	<ul>
 	<% @user.errors.full_messages.each do |error| %>
 		<li><%= error %></li>
