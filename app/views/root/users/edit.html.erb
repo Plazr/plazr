@@ -1,0 +1,20 @@
+<h1>Edit User</h1>
+
+<%= form_for(@user) do |u| %>
+	<ul>
+	<% @user.errors.full_messages.each do |error| %>
+		<li><%= error %></li>
+	<% end %>
+	</ul>
+	<p>
+		<%= u.label :first_name %><br>
+		<%= u.text_field :first_name %>
+	</p>
+	<p>
+		<%= u.label :email %><br>
+		<%= u.text_field :email %>
+	</p>
+	<p>
+		<%= u.submit %>
+	</p>
+<% end %>

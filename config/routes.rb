@@ -10,6 +10,7 @@ Plazr::Application.routes.draw do
   resources :payment_methods
 
   namespace :root do
+    resources :users
     
   end
 end

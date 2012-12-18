@@ -1,4 +1,4 @@
-class PlazrAuth::Root::ApplicationController < PlazrAuth::ApplicationController
+class Root::ApplicationController < ApplicationController
   protect_from_forgery
 
 end
