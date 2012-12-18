@@ -5,8 +5,10 @@ gem 'rails', '3.2.9'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
-
+#gem 'sqlite3'
+group :production do
+  gem 'ps'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -22,13 +24,13 @@ end
 
 
 gem 'jquery-rails'
-gem 'plazr_auth', :git => 'https://github.com/Plazr/plazr_auth.git'
+gem 'plazr_auth', :git => 'git@github.com:Plazr/plazr_auth.git'
 gem 'cocoon'
 gem 'simple_form'
 
 group :development, :test do
   #gem 'thin'
-
+  gem 'sqlite3'
   # Rspec
   gem 'rspec-rails', '~> 2.6'
 
