@@ -29,7 +29,7 @@
 
 <ul>
   	<% @category.stores.each do |store| %>
-    	<li><%= link_to store.name, store_path(store) %></li>
+    	<li><%= link_to store.name, root_store_path(store) %></li>
   	<% end %>
 </ul>
 
