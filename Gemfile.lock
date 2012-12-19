@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/Plazr/plazr_auth.git
-  revision: 05d1b3beae33da21f93ce975b771356bf17cc5b3
+  revision: ed7868c76ee11944e1f99d0415c1576bc6e78704
   specs:
     plazr_auth (0.0.1)
       cancan (>= 1.6.8)
@@ -97,7 +97,7 @@ GEM
     guard-bundler (1.0.0)
       bundler (~> 1.0)
       guard (~> 1.1)
-    guard-rspec (2.3.1)
+    guard-rspec (2.3.2)
       guard (>= 1.1)
       rspec (~> 2.11)
     guard-spork (1.4.0)
