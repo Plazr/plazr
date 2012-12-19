@@ -13,7 +13,7 @@ class Root::StoreCategoriesController < Root::ApplicationController
   def show
     #@categories  = StoreCategory.all
     @category = StoreCategory.find(params[:id])
-    @subcategories = StoreCategory.where("parent = ?", @category.id)
+    @subcategories = StoreCategory.where(:parent => @category.id)
   end
   def edit
     @category = StoreCategory.find(params[:id])

@@ -6,6 +6,7 @@ class Root::UsersController < Root::ApplicationController
 
   def show
     @user = PlazrAuth::User.find(params[:id])
+    @roles = PlazrAuth::Role.all - @user.roles
   end
 
   def edit
@@ -22,6 +23,20 @@ class Root::UsersController < Root::ApplicationController
     @user = PlazrAuth::User.find(params[:id])
     @user.destroy
     redirect_to root_users_path
+  end
+
+  def addrole
+    @user = PlazrAuth::User.find(params[:user_id])
+    @role = PlazrAuth::Role.find(params[:role_id])
+    @user.roles.push(@role) if (@user && @role)
+    redirect_to(root_user_path(@user))
+  end
+
+  def rmrole
+    @user = PlazrAuth::User.find(params[:user_id])
+    @role = PlazrAuth::Role.find(params[:role_id])
+    @user.roles.delete(@role) if (@user && @role)
+    redirect_to(root_user_path(@user))
   end
 
 end
