@@ -1,4 +1,4 @@
-class StoresController < ApplicationController
+class Root::StoresController < Root::ApplicationController
   def index
     @stores = Store.all
   end
@@ -10,7 +10,7 @@ class StoresController < ApplicationController
     @store=Store.new(params[:store])
     respond_to do |format|
     if @store.save
-      format.html { redirect_to(@store, :notice => 'Store was successfully created.') }
+      format.html { redirect_to root_store_path (@store), :notice => 'Store was successfully created.' }
     else
       format.html { render :action => "new" }
     end
@@ -23,7 +23,7 @@ class StoresController < ApplicationController
   def destroy
     @store = Store.find(params[:id])  
     @store.destroy
-    redirect_to stores_path
+    redirect_to root_stores_path
   end
   def show
     @store = Store.find(params[:id])
@@ -32,6 +32,6 @@ class StoresController < ApplicationController
     #raise params.inspect    
     @store = Store.find(params[:id])
     @store.update_attributes(params[:store])
-    redirect_to store_path(@store)
+    redirect_to root_store_path(@store)
   end
 end

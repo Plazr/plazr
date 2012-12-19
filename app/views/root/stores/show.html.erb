@@ -7,14 +7,14 @@ URL: <%= @store.url %><br>
 <p>
 	Categories:<br>
 	<% @store.store_categories.each do |c| %>
-		<%= link_to c.title, store_category_path(c) %>
+		<%= link_to c.title, root_store_category_path(c) %>
 	<% end %>
 </p>	
 
 <p>
-	<%= link_to "Edit Store", edit_store_path(@store) %>
-	<%= link_to "Delete Store", store_path(@store), method: :delete %>
+	<%= link_to "Edit Store", edit_root_store_path(@store) %>
+	<%= link_to "Delete Store", root_store_path(@store), method: :delete %>
 </p>
 
 
-<%= link_to "Back to Stores", stores_path %>
+<%= link_to "Back to Stores", root_stores_path %>
