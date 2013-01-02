@@ -39,7 +39,7 @@ group :development, :test do
   
   # Guard
   gem 'growl'
-  gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
+  gem 'rb-fsevent', :require => false
   gem 'guard-bundler'
   gem 'guard-rspec'
   gem 'guard-spork' 
