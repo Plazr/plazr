@@ -12,6 +12,11 @@ gem 'cocoon'
 gem 'simple_form'
 gem 'cancan'
 
+#gem 'sqlite3'
+group :production do
+  gem 'pg'
+end
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -26,7 +31,7 @@ end
 
 group :development, :test do
   #gem 'thin'
-
+  gem 'sqlite3'
   # Rspec
   gem 'rspec-rails', '~> 2.6'
 
