@@ -1,6 +1,6 @@
 <h1>New Store</h1>
 
-<%= simple_form_for [:root,@store] do |f| %>
+<%= simple_form_for @store do |f| %>
 	<%= render "shared/error_messages", :target => @store %>
 	
 	<%= f.label :name, "Title" %>
