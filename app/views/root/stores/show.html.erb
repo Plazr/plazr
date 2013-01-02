@@ -13,7 +13,7 @@ URL: <%= @store.url %><br>
 
 <p>
 	<%= link_to "Edit Store", edit_root_store_path(@store) %>
-	<%= link_to "Delete Store", root_store_path(@store), method: :delete %>
+	<%= link_to "Delete Store", root_store_path(@store), method: :delete, data: { confirm: 'Are you sure?' } %>
 </p>
 
 
