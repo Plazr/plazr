@@ -10,7 +10,7 @@ class StoresController < ApplicationController
     @store=Store.new(params[:store])
     respond_to do |format|
     if @store.save
-      format.html { redirect_to(@store, :notice => 'Store was successfully created.') }
+      format.html { redirect_to(@store, :notice => 'A sua loja foi criada com sucesso.') }
     else
       format.html { render :action => "new" }
     end

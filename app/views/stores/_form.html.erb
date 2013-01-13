@@ -1,29 +1,50 @@
-<h1>New Store</h1>
-
-<%= simple_form_for @store do |f| %>
-	<%= render "shared/error_messages", :target => @store %>
-	
-	<%= f.label :name, "Title" %>
-	<%= f.text_field :name %><br>
-	<%= f.label :description, "Description" %>
-	<%= f.text_field :description %><br>
-	<%= f.label :email, "Email" %>
-	<%= f.text_field :email %><br>
-	<%= f.label :phone, "Phone" %>
-	<%= f.text_field :phone %><br>
-	<%= f.label :url, "URL" %>
-	<%= f.text_field :url %><br>
-
-  <h3>Categories</h3>
-  <div id='tasks'>
-    <%= f.simple_fields_for :categorizes do |task| %>
-      <%= render 'categorize_fields', :f => task %>
-  	<% end %>
-    <%= link_to_add_association 'Add Category', f, :categorizes %><br>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<body>
+	<h1><span>Nova Loja</span></h1>
+	<%= simple_form_for @store do |f| %>
+	<div class="wrap announcement-container"  id="etapa1" style="padding-top: 16.5px; padding-bottom: 16.5px;">
+		<%= render "shared/error_messages", :target => @store %>
+		<div class="row-fluid">
+			<div class="span12">
+				<h2><span class="logo">Dados da Loja</span></h2>
+			</div>
+		</div>
+		<table>
+			<tr>
+				<th align="right"><%= f.label :name, "Nome da Loja:" %></th>
+				<th align="left"><%= f.text_field :name, :required => true, :placeholder => "Plazr" %></th>
+			</tr>
+			<tr>
+				<th align="right"><%= f.label :description, "Descrição:" %></th>
+				<th align="left"><%= f.text_area :description , :cols => 29, :rows => 2, :required => false, :placeholder => "O Plazr permite criar uma loja online" %></th>
+			</tr>
+			<tr>
+				<th align="right"><%= f.label :email, "Email da Loja:" %></th>
+				<th align="left"><%= f.text_field :email, :required => true, :placeholder => "plazr@example.com" %></th>
+			</tr>
+			<tr>
+				<th align="right"><%= f.label :url, "URL Pretendido:" %></th>
+				<th align="left"><%= f.text_field :url, :placeholder => "http://www.plazr.net" %>
+			</tr>
+			<tr>
+				<th align="right"><%= f.label :phone, "Telefone da Loja:" %></th>
+				<th align="left"><%= f.text_field :phone, :required => false, :required => false, :placeholder => "911111111"%></th>
+			</tr>
+			<tr>
+				<th align="right">Categorias:</th>
+				<th align="left">
+					<div id='tasks'>
+						<%= f.simple_fields_for :categorizes do |task| %>
+						<%= render 'categorize_fields', :f => task %>
+						<% end %>
+						<%= link_to_add_association 'Adicionar Categoria', f, :categorizes %>
+					</div>
+				</th>
+			</tr>
+			<tr>
+				<th><%= f.submit 'Criar Loja'%></th>
+			</tr>
+		</table>
+	<% end %>
 	</div>
-  <p>
-  	<%= f.submit 'Save Store' %>
-  </p>
-
-<% end %>
-
+</body></html>

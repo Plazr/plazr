@@ -12,9 +12,9 @@ URL: <%= @store.url %><br>
 </p>	
 
 <p>
-	<%= link_to "Editar Loja", edit_store_path(@store) %>
-	<%= link_to "Eliminar Loja", store_path(@store), method: :delete %>
+	<%= link_to "Edit Store", edit_store_path(@store) %>
+	<%= link_to "Delete Store", store_path(@store), method: :delete %>
 </p>
 
 
-<%= link_to "Voltar para as Lojas", stores_path %>
+<%= link_to "Back to Stores", stores_path %>
