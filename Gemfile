@@ -49,6 +49,9 @@ group :development, :test do
   gem 'faker'
 end
 
+#Google Maps
+gem 'gmaps4rails'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

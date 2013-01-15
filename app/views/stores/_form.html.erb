@@ -11,6 +11,9 @@
 		</div>
 		<table>
 			<tr>
+				<%= gmaps("markers" => {"data" => @json, "options" => {"custom_infowindow_class" => "yellow" } }) %> 
+			</tr>
+			<tr>
 				<th align="right"><%= f.label :name, "Nome da Loja:" %></th>
 				<th align="left"><%= f.text_field :name, :required => true, :placeholder => "Plazr" %></th>
 			</tr>
@@ -24,7 +27,7 @@
 			</tr>
 			<tr>
 				<th align="right"><%= f.label :url, "URL Pretendido:" %></th>
-				<th align="left"><%= f.text_field :url, :placeholder => "http://www.plazr.net" %>
+				<th align="left"><%= f.url_field :url, :placeholder => "http://www.plazr.net" %>
 			</tr>
 			<tr>
 				<th align="right"><%= f.label :phone, "Telefone da Loja:" %></th>
@@ -42,9 +45,12 @@
 				</th>
 			</tr>
 			<tr>
-				<th><%= f.submit 'Criar Loja'%></th>
+				<th><%= f.submit%></th>
 			</tr>
 		</table>
 	<% end %>
 	</div>
+	<footer>
+		<%= yield :scripts %>
+	</footer>
 </body></html>

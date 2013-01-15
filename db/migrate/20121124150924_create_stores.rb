@@ -7,6 +7,7 @@ class CreateStores < ActiveRecord::Migration
       t.integer :phone
       t.string :url
       
+       
       t.timestamps
     end
   end

@@ -3,11 +3,13 @@ class StoresController < ApplicationController
     @stores = Store.all
   end
   def new
+    @json =Store.all.to_gmaps4rails
     @store=Store.new    
     @categorize = @store.categorizes.build
   end
   def create
-    @store=Store.new(params[:store])
+    @json = Store.all.to_gmaps4rails
+    @store= Store.new(params[:store])
     respond_to do |format|
     if @store.save
       format.html { redirect_to(@store, :notice => 'A sua loja foi criada com sucesso.') }
@@ -18,7 +20,7 @@ class StoresController < ApplicationController
       
   end
   def edit
-    @store = Store.find(params[:id])      
+    @store = Store.find(params[:id])  
   end
   def destroy
     @store = Store.find(params[:id])  
