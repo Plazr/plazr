@@ -39,7 +39,14 @@ class StoresController < ApplicationController
     @store=Store.new(params[:store])
     respond_to do |format|
     if @store.save
+      
+      ## script local
+      #system('sh ../shared/create_store_local.sh '+@store.name.to_s.parameterize+' '+@store.id.to_s)
+      ## script global
+      system('sh ../shared/create_store.sh '+@store.name.to_s.parameterize+' '+@store.id.to_s)
+      
       format.html { redirect_to store_path (@store), :notice => 'Store was successfully created.' }
+
     else
       format.html { render :action => "new" }
     end
@@ -51,7 +58,9 @@ class StoresController < ApplicationController
   end
   def destroy
     @store = Store.find(params[:id])  
+    system("kill -9 `lsof -wni tcp:30"+@store.id.to_s+" | grep ruby | awk '{ print  $2 }'`")
     @store.destroy
+
     redirect_to stores_path
   end
   def show
