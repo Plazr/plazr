@@ -1,56 +1,97 @@
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<body>
-	<h1><span>Nova Loja</span></h1>
-	<%= simple_form_for @store do |f| %>
-	<div class="wrap announcement-container"  id="etapa1" style="padding-top: 16.5px; padding-bottom: 16.5px;">
-		<%= render "shared/error_messages", :target => @store %>
-		<div class="row-fluid">
-			<div class="span12">
-				<h2><span class="logo">Dados da Loja</span></h2>
+<div class="progress-wrap">
+	<div class="container">
+		<div class="progress">
+			<div class="bar" style="width: 30%;">
 			</div>
 		</div>
-		<table>
-			<tr>
-				<%= gmaps("markers" => {"data" => @json, "options" => {"custom_infowindow_class" => "yellow" } }) %> 
-			</tr>
-			<tr>
-				<th align="right"><%= f.label :name, "Nome da Loja:" %></th>
-				<th align="left"><%= f.text_field :name, :required => true, :placeholder => "Plazr" %></th>
-			</tr>
-			<tr>
-				<th align="right"><%= f.label :description, "Descrição:" %></th>
-				<th align="left"><%= f.text_area :description , :cols => 29, :rows => 2, :required => false, :placeholder => "O Plazr permite criar uma loja online" %></th>
-			</tr>
-			<tr>
-				<th align="right"><%= f.label :email, "Email da Loja:" %></th>
-				<th align="left"><%= f.text_field :email, :required => true, :placeholder => "plazr@example.com" %></th>
-			</tr>
-			<tr>
-				<th align="right"><%= f.label :url, "URL Pretendido:" %></th>
-				<th align="left"><%= f.url_field :url, :placeholder => "http://www.plazr.net" %>
-			</tr>
-			<tr>
-				<th align="right"><%= f.label :phone, "Telefone da Loja:" %></th>
-				<th align="left"><%= f.text_field :phone, :required => false, :required => false, :placeholder => "911111111"%></th>
-			</tr>
-			<tr>
-				<th align="right">Categorias:</th>
-				<th align="left">
-					<div id='tasks'>
-						<%= f.simple_fields_for :categorizes do |task| %>
-						<%= render 'categorize_fields', :f => task %>
-						<% end %>
-						<%= link_to_add_association 'Adicionar Categoria', f, :categorizes %>
-					</div>
-				</th>
-			</tr>
-			<tr>
-				<th><%= f.submit%></th>
-			</tr>
-		</table>
-	<% end %>
 	</div>
-	<footer>
-		<%= yield :scripts %>
-	</footer>
-</body></html>
+</div>
+
+<%= simple_form_for(@store, html: {class: 'form-horizontal'}) do |f| %>
+
+<section id="section-one" class="wrap">
+	<div class="container">
+		<section>
+			<h1>Bem-Vindo ao Plazr!</h1>
+			<p>Utilize o Plazr para criar a sua loja online!<br />Deve preencher o formulário das próximas três etapas para concluir o prcesso de criar a sua loja!</p>
+		</section>
+		<section>
+			<div class="input-append">
+				<label>Indique que nome pretende dar à sua loja: </label>
+				<%= f.text_field :name, :required => true, :placeholder => "Plazr", class: 'input-xxlarge span3' %>
+				<button class="btn btn-primary" type="button">Continuar</button>
+			</div>
+		</section>
+	</div>
+</section>
+
+<section id="section-two" class="wrap">
+	<div class="container">
+		<section>
+			<h2>Informação Básica</h2>
+			<p>Deve indificar uma descrição para a loja e associa-la a uma ou mais categorias.</p>
+		</section>
+		<section>
+			<div class="control-group">
+				<label class="control-label">
+					Insira uma descrição para a loja:
+				</label>
+				<div class="controls">
+					<%= f.text_area :description, :rows => 2, :required => false, :placeholder => "O Plazr permite criar uma loja online.", class: 'input-xxlarge' %>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">
+					Categorias:
+				</label>
+				<div class="controls">
+					<%= f.simple_fields_for :categorizes do |task| %>
+					<%= render 'categorize_fields', :f => task %>
+					<% end %>
+					<%= link_to_add_association 'Adicionar Categoria', f, :categorizes %>
+				</div>
+			</div>
+		</section>
+	</div>
+</section>
+
+<section id="section-three" class="warp">
+	<div class="container">
+		<div class="control-group">
+			<label class="control-label">
+				<%= f.label :email, "Email da loja:" %>
+			</label>
+			<div class="controls">
+				<%= f.text_field :email, :required => true, :placeholder => "plazr@example.com", class: 'input-xxlarge' %>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label">
+				<%= f.label :url, "URL Pretendido:" %>
+			</label>
+			<div class="controls">
+				<%= f.url_field :url, :placeholder => "http://www.plazr.net", class: 'input-xxlarge' %>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label">
+				<%= f.label :phone, "Telefone da Loja:" %>
+			</label>
+			<div class="controls">
+				<%= f.text_field :phone, :required => false, :required => false, :placeholder => "911111111", class: 'input-xxlarge' %>
+			</div>
+		</div>
+
+	</div>
+</section>
+
+<section id="section-four" class="wrap">
+	<div class="container">
+		<p>Por favor confirme a informação inserida!</p>
+		<%= f.submit 'Submeter' %>
+	</div>
+</section>
+
+<% end %>
