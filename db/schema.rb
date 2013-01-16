@@ -44,6 +44,11 @@ ActiveRecord::Schema.define(:version => 20121205143633) do
     t.string   "email"
     t.integer  "phone"
     t.string   "url"
+    t.string   "adress"
+    t.string   "postal_code"
+    t.string   "city"
+    t.string   "link_banner"
+    t.string   "link_logo"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end

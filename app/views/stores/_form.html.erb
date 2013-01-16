@@ -14,6 +14,15 @@
 	<%= f.label :url, "URL" %>
 	<%= f.text_field :url %><br>
 
+	<%= f.label :adress, "Adress" %>
+	<%= f.text_field :adress %><br>
+
+	<%= f.label :postal_code, "Postal Code" %>
+	<%= f.text_field :postal_code %><br>
+
+	<%= f.label :city, "City" %>
+	<%= f.text_field :city %><br>
+
   <h3>Categories</h3>
   <div id='tasks'>
     <%= f.simple_fields_for :categorizes do |task| %>

@@ -41,9 +41,9 @@ class StoresController < ApplicationController
     if @store.save
       
       ## script local
-      #system('sh ../shared/create_store_local.sh '+@store.name.to_s.parameterize+' '+@store.id.to_s)
+      system('sh ../shared/create_store_local.sh '+@store.name.to_s.parameterize+' '+@store.id.to_s)
       ## script global
-      system('sh ../shared/create_store.sh '+@store.name.to_s.parameterize+' '+@store.id.to_s)
+      #system('sh ../shared/create_store.sh '+@store.name.to_s.parameterize+' '+@store.id.to_s)
       
       format.html { redirect_to store_path (@store), :notice => 'Store was successfully created.' }
 

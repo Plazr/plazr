@@ -1,5 +1,5 @@
 class Store < ActiveRecord::Base
-  attr_accessible :name, :description, :email, :phone, :url, :categorizes_attributes
+  attr_accessible :name, :description, :email, :phone, :url, :categorizes_attributes, :postal_code, :city, :adress, :link_banner, :link_logo
   
   validates :name, :email, presence: true
   validates :phone, 
