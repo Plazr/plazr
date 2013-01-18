@@ -1,5 +1,99 @@
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<body>
+<head>
+	<script type="text/javascript">
+	var geocoder;
+	var map;
+	var oldMarker;
+	
+	function initialize() {
+		geocoder = new google.maps.Geocoder();
+		var latlng = new google.maps.LatLng(39.5, -8);
+		var myOptions = {
+			center: latlng,
+			zoom: 6,
+  			mapTypeId: google.maps.MapTypeId.HYBRID
+		}
+		map = new google.maps.Map(document.getElementById("mapa"), myOptions);
+		placeMarker(latlng, 0);
+	}
+
+	function placeMarker(location, first) {
+
+		var marker = new google.maps.Marker({
+			position: location,
+			map: map,
+			animation: google.maps.Animation.DROP,
+			draggable: true
+		});
+
+		if(first != 0){
+			map.setZoom(16);
+		}
+		if (oldMarker != undefined){
+			oldMarker.setMap(null);
+		}
+		oldMarker = marker;
+
+		map.setCenter(location);
+
+
+		var iw = new google.maps.InfoWindow({
+			content: "A sua loja fica aqui!!!"
+		});
+		google.maps.event.addListener(marker, "click", function (e) { iw.open(map, marker); });
+
+		google.maps.event.addListener(marker, 'drag', function(event){
+			document.getElementById("latitude").value = event.latLng.lat();
+			document.getElementById("longitude").value = event.latLng.lng();
+		});
+		google.maps.event.addListener(marker, 'click', toggleBounce);
+
+	}
+
+	function toggleBounce() {
+
+		if (marker.getAnimation() != null) {
+			marker.setAnimation(null);
+		} else {
+			marker.setAnimation(google.maps.Animation.BOUNCE);
+		}
+	}
+
+	function codeAddress() {
+		var address = document.getElementById("address").value;
+		var city = document.getElementById("city").value;
+		var codP1 =  document.getElementById("codP1").value; 
+		var codP2 =  document.getElementById("codP2").value; 
+		var location = address + ", " + city + ", " + codP1 + "-" + codP2;
+		alert("Pesquizar: "+location);
+		geocoder.geocode( { 'address': location}, function(results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
+				placeMarker(results[0].geometry.location, 1);
+			} else {
+				alert("A localização da sua loja não foi bem sucedida. Certifique-se que ecreveu a morada corretamente.");
+			}
+		});
+	}
+
+	function codeLatLng() {
+		var lat = parseFloat(document.getElementById("latitude").value);
+		var lng = parseFloat(document.getElementById("longitude").value);
+		var latlng = new google.maps.LatLng(lat, lng);
+		geocoder.geocode({'latLng': latlng}, function(results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
+				if (results[1]) {
+					placeMarker(latlng, 1);
+				}
+			} else {
+				alert("A localização da sua loja não foi bem sucedida. Certifique-se que escreveu corretamente  a Latitude e Longitude.");
+			}
+		});
+	}
+
+	</script>
+</head>
+<body onload="initialize()">
+
 	<h1><span>Nova Loja</span></h1>
 	<%= simple_form_for @store do |f| %>
 	<div class="wrap announcement-container"  id="etapa1" style="padding-top: 16.5px; padding-bottom: 16.5px;">
@@ -10,9 +104,6 @@
 			</div>
 		</div>
 		<table>
-			<tr>
-				<%= gmaps("markers" => {"data" => @json, "options" => {"custom_infowindow_class" => "yellow" } }) %> 
-			</tr>
 			<tr>
 				<th align="right"><%= f.label :name, "Nome da Loja:" %></th>
 				<th align="left"><%= f.text_field :name, :required => true, :placeholder => "Plazr" %></th>
@@ -26,31 +117,49 @@
 				<th align="left"><%= f.text_field :email, :required => true, :placeholder => "plazr@example.com" %></th>
 			</tr>
 			<tr>
-				<th align="right"><%= f.label :url, "URL Pretendido:" %></th>
-				<th align="left"><%= f.url_field :url, :placeholder => "http://www.plazr.net" %>
-			</tr>
-			<tr>
 				<th align="right"><%= f.label :phone, "Telefone da Loja:" %></th>
 				<th align="left"><%= f.text_field :phone, :required => false, :required => false, :placeholder => "911111111"%></th>
 			</tr>
 			<tr>
-				<th align="right">Categorias:</th>
-				<th align="left">
-					<div id='tasks'>
-						<%= f.simple_fields_for :categorizes do |task| %>
-						<%= render 'categorize_fields', :f => task %>
-						<% end %>
-						<%= link_to_add_association 'Adicionar Categoria', f, :categorizes %>
-					</div>
-				</th>
+				<th align="right"><%= f.label :url, "URL Pretendido:" %></th>
+				<th align="left"><%= f.url_field :url, :placeholder => "http://www.plazr.net" %></th>
 			</tr>
 			<tr>
-				<th><%= f.submit%></th>
+				<th align="right"><%= f.label :url, "Localização:" %></th>
+				<th align="left">
+					<% gmaps4rails(@json) %>
+					<div>
+						<p>Morada<input id="address" type="textbox" placeholder ="Rua da Alegria, 26, Lordelo" /></p>
+						<p>Cidade<input id="city" type="textbox" placeholder="Guimarães" /></p>
+						<p>Código Postal<input id="codP1" type="number" maxlength= 4 placeholder="4815" />-<input id="codP2" type="number" maxlength= 3 placeholder="144" /></p>
+						<input type="button" value="Localizar no mapa" onclick="codeAddress()" />
+					</div>
+					<div id="mapa" style="width:320px; height:320px"></div>
+					<div id="latlong">
+						<p>Latitude: <input size="20" type="text" id="latitude"> 
+						<p>Longitude: <input size="20" type="text" id="longitude"></p>
+					</div>
+					<p><input type="button" value="Localizar no mapa" onclick="codeLatLng()" /></p>
+
+				</th>
 			</tr>
-		</table>
+			<th align="right">Categorias:</th>
+			<th align="left">
+				<div id='tasks'>
+					<%= f.simple_fields_for :categorizes do |task| %>
+					<%= render 'categorize_fields', :f => task %>
+					<% end %>
+					<%= link_to_add_association 'Adicionar Categoria', f, :categorizes %>
+				</div>
+			</th>
+		</tr>
+		<tr>
+			<th><%= f.submit%></th>
+		</tr>
+	</table>
 	<% end %>
-	</div>
-	<footer>
-		<%= yield :scripts %>
-	</footer>
+</div>
+<footer>
+	<%= yield :scripts %>
+</footer>
 </body></html>
