@@ -7,11 +7,12 @@
 	
 	function initialize() {
 		geocoder = new google.maps.Geocoder();
-		var latlng = new google.maps.LatLng(39.5, -8);
+		var latlng = new google.maps.LatLng(39.5, -8.3);
 		var myOptions = {
 			center: latlng,
 			zoom: 6,
-  			mapTypeId: google.maps.MapTypeId.HYBRID
+  			mapTypeId: google.maps.MapTypeId.HYBRID,
+  			streetViewControl: false
 		}
 		map = new google.maps.Map(document.getElementById("mapa"), myOptions);
 		placeMarker(latlng, 0);
@@ -43,8 +44,8 @@
 		google.maps.event.addListener(marker, "click", function (e) { iw.open(map, marker); });
 
 		google.maps.event.addListener(marker, 'drag', function(event){
-			document.getElementById("latitude").value = event.latLng.lat();
-			document.getElementById("longitude").value = event.latLng.lng();
+			document.getElementById("store_latitude").value = event.latLng.lat();
+			document.getElementById("store_longitude").value = event.latLng.lng();
 		});
 		google.maps.event.addListener(marker, 'click', toggleBounce);
 
@@ -65,19 +66,18 @@
 		var codP1 =  document.getElementById("codP1").value; 
 		var codP2 =  document.getElementById("codP2").value; 
 		var location = address + ", " + city + ", " + codP1 + "-" + codP2;
-		alert("Pesquizar: "+location);
 		geocoder.geocode( { 'address': location}, function(results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
 				placeMarker(results[0].geometry.location, 1);
 			} else {
-				alert("A localização da sua loja não foi bem sucedida. Certifique-se que ecreveu a morada corretamente.");
+				alert("A localização da sua loja não foi bem sucedida. Certifique-se que escreveu a morada corretamente.");
 			}
 		});
 	}
 
 	function codeLatLng() {
-		var lat = parseFloat(document.getElementById("latitude").value);
-		var lng = parseFloat(document.getElementById("longitude").value);
+		var lat = parseFloat(document.getElementById("store_latitude").value);
+		var lng = parseFloat(document.getElementById("store_longitude").value);
 		var latlng = new google.maps.LatLng(lat, lng);
 		geocoder.geocode({'latLng': latlng}, function(results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
@@ -134,10 +134,11 @@
 						<p>Código Postal<input id="codP1" type="number" maxlength= 4 placeholder="4815" />-<input id="codP2" type="number" maxlength= 3 placeholder="144" /></p>
 						<input type="button" value="Localizar no mapa" onclick="codeAddress()" />
 					</div>
-					<div id="mapa" style="width:320px; height:320px"></div>
+					<div id="mapa" style="width:600px; height:320px"></div>
 					<div id="latlong">
-						<p>Latitude: <input size="20" type="text" id="latitude"> 
-						<p>Longitude: <input size="20" type="text" id="longitude"></p>
+						<p>Latitude: <%= f.text_field :latitude, :placeholder => "39.5" %></p>
+						<p>Longitude: <%= f.text_field :longitude, :placeholder => "-8.3" %></p>
+						</p>
 					</div>
 					<p><input type="button" value="Localizar no mapa" onclick="codeLatLng()" /></p>
 

@@ -13,22 +13,20 @@ class Store < ActiveRecord::Base
                       :allow_blank => true, 
   					          :message => "O URL inserido esta invalido."
   validates_format_of :phone, 
-			          :numericality => true,
-			          :length => { :minimum => 9, :maximum => 15 },
-			          :with => /\A[0-9]{9}\Z/,
-			          :allow_nil => true,
-			          :allow_blank => true, 
-			          :message => "O numero de Telefone da Loja inserido esta invalido."
-  validates_format_of :latitude,
-                      :with => /^[0-9]+(\.[0-9])?$/, 
-                      :allow_nil => true,
-                      :allow_blank => true, 
-                      :message => "A latitude inserida esta invalida."
-  validates_format_of :longitude,
-                      :with => /^[0-9]+(\.[0-9])?$/, 
-                      :allow_nil => true,
-                      :allow_blank => true, 
-                      :message => "A longitude inserida esta invalida."
+      			          :numericality => true,
+      			          :length => { :minimum => 9, :maximum => 15 },
+      			          :with => /\A[0-9]{9}\Z/,
+      			          :allow_nil => true,
+      			          :allow_blank => true, 
+      			          :message => "O numero de Telefone da Loja inserido esta invalido."
+  validates_numericality_of :latitude, :less_than => 1000000,
+                            :allow_nil => true,
+                            :allow_blank => true,
+                            :message => "O valor da latitude inserido esta invalido."
+  validates_numericality_of :longitude, :less_than => 1000000,
+                            :allow_nil => true,
+                            :allow_blank => true,
+                            :message => "O valor da longitude inserido esta invalido."
   has_many :categorizes
   has_many :store_categories, through: :categorizes
 
