@@ -36,13 +36,17 @@ class StoresController < ApplicationController
 
   end
   def new
-    @store=Store.new    
-    @categorize = @store.categorizes.build
+    # @json =Store.all.to_gmaps4rails
+    @store=Store.new
+    @store.get_unselected_categories
   end
 
 
   def create
-    @store=Store.new(params[:store])
+    # @json = Store.all.to_gmaps4rails
+    @store= Store.new(params[:store])
+    # @store = Store.new
+    @categorize = @store.categorizes.build
     respond_to do |format|
     if @store.save
       
@@ -55,9 +59,7 @@ class StoresController < ApplicationController
       	current_user.roles << PlazrAuth::Role.find_by_name('admin')
       end
 
-      format.html { redirect_to store_path (@store), :notice => 'Store was successfully created.' }
-
-
+      format.html { redirect_to(@store, :notice => 'A sua loja foi criada com sucesso.') }
     else
       format.html { render :action => "new" }
     end
@@ -65,10 +67,10 @@ class StoresController < ApplicationController
     
     
   end
-      
+
   end
   def edit
-    @store = Store.find(params[:id])      
+    @store = Store.find(params[:id])
   end
   def destroy
     @store = Store.find(params[:id])  
@@ -82,7 +84,7 @@ class StoresController < ApplicationController
     @store = Store.find(params[:id])
   end
   def update
-    #raise params.inspect    
+    #raise params.inspect
     @store = Store.find(params[:id])
     @store.update_attributes(params[:store])
     redirect_to store_path(@store)
