@@ -12,119 +12,125 @@
  *= require bootstrap/bootstrap.css
  *= require bootstrap/bootstrap-responsive.css
  *= require_self
- */
+*/
 
- @font-face {
- 	font-family: 'Tabitha';
- 	src: url('/font/tabitha.ttf');
- }
+@font-face {
+	font-family: 'Tabitha';
+	src: url('/font/tabitha.ttf');
+}
 
- @font-face {
- 	font-family: 'Open Sans';
- 	font-style: normal;
- 	font-weight: 400;
- 	src: local('Open Sans'), local('OpenSans'), url('/font/cJZKeOuBrn4kERxqtaUH3bO3LdcAZYWl9Si6vvxL-qU.woff') format('woff');
- }
+@font-face {
+	font-family: 'Open Sans';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Open Sans'), local('OpenSans'), url('/font/cJZKeOuBrn4kERxqtaUH3bO3LdcAZYWl9Si6vvxL-qU.woff') format('woff');
+}
 
- @mixin social-icons {
- 	height: 64px;
- 	width: 64px;
- 	float: left;
- 	padding: 0 16px 0 16px;
- }
+@mixin social-icons {
+	height: 64px;
+	width: 64px;
+	float: left;
+	padding: 0 16px 0 16px;
+}
 
 
- $color0: #FFFFFF;
- $color1: #515151;
- $color2: #1A82F7;
- $color3: #E1E4E9;
+$color0: #FFFFFF;
+$color1: #515151;
+$color2: #1A82F7;
+$color3: #E1E4E9;
 
- $color4: #F6F6F8;
- $color4-rgba: rgba(246, 246, 248, 0.9);;
+$color4: #F6F6F8;
+$color4-rgba: rgba(246, 246, 248, 0.9);;
 
- $intel-blue: #0574b2;
+$intel-blue: #0574b2;
 
- $text: #333333;
- $text-white: #FFFFFF;
+$text: #333333;
+$text-white: #FFFFFF;
 
- @mixin hr-border-bottom {
- 	border-bottom: 1px solid $color1;
- }
+@mixin hr-border-bottom {
+	border-bottom: 1px solid $color1;
+}
 
- body {
- 	background: url(<%= image_path('we.JPG') %>) no-repeat center center fixed;
- 	-webkit-background-size: cover;
- 	-moz-background-size: cover;
- 	-o-background-size: cover;
- 	background-size: cover;
- }
+body {
+	background: url(<%= image_path('we.JPG') %>) no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
 
- .wrap {
- 	width: 100%;
- }
+.wrap {
+	width: 100%;
+}
 
- #section-one, #section-two, #section-three, #section-four {
- 	font-size: 20px;
- 	.container {
- 		> section {
- 			margin-bottom: 1em;
- 		}
- 		section {
- 			padding: 1em;
- 			border: 1px solid #eee;
- 			background-color: $color4-rgba;
- 		}
- 	}
- }
+#section-one, #section-two, #section-three, #section-four, #section-five {
+	font-size: 20px;
+	.container {
+		> section {
+			margin-bottom: 1em;
+		}
+		section {
+			padding: 1em;
+			border: 1px solid #eee;
+			background-color: $color4-rgba;
+		}
+	}
+}
 
- #section-one {
- 	h1 {
- 		padding-bottom: 20px;
- 		font-size: 60px;
- 	}
- 	.container {
- 		> section {
- 			margin-bottom: 1em;
- 		}
- 		section {
- 			label {
- 				font-size: 20px;
- 				line-height: 30px;
- 				vertical-align: center;
- 				float: left;
- 				padding-right: 1em;
- 			}
- 		}
- 	}
- }
+#section-one {
+	h1 {
+		padding-bottom: 20px;
+		font-size: 60px;
+	}
+	.container {
+		> section {
+			margin-bottom: 1em;
+		}
+		section {
+			label {
+				font-size: 20px;
+				line-height: 30px;
+				vertical-align: center;
+				float: left;
+				padding-right: 1em;
+			}
+		}
+	}
+}
 
- #section-two {
- 	h2 {
- 	 	padding-bottom: 20px;
- 		font-size: 60px;
- 	}
- }
+#section-two {
+	h2 {
+		padding-bottom: 20px;
+		font-size: 60px;
+	}
+}
 
- .progress-wrap {
- 	position: fixed;
- 	bottom: 0;
- 	width: 100%;
- 	.progress {
- 		height: 20px;
- 		width: 100%;
- 		background: $color4-rgba;
- 		.bar {
- 			height: 100%;
- 			width: 0;
- 		}
- 	}
- }
+#section-four {
+	.location {
 
- .wrap.top-container {
- 	background: $color4-rgba;
- 	color: $text;
- 	position: fixed;
- 	top: 0;
+	}
+}
+
+.progress-wrap {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	.progress {
+		height: 20px;
+		width: 100%;
+		background: $color4-rgba;
+		.bar {
+			height: 100%;
+			width: 0;
+		}
+	}
+}
+
+.wrap.top-container {
+	background: $color4-rgba;
+	color: $text;
+	position: fixed;
+	top: 0;
  	// box shadows
  	-webkit-box-shadow:  0 0 10px rgba(0, 0, 0, 0.5);
  	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);

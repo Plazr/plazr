@@ -108,19 +108,16 @@
 			<h2>Localização</h2>
 		</section>
 		<section>
-			<% gmaps4rails(@json) %>
-			<div>
+			<div class="location pull-left">
+				<% gmaps4rails(@json) %>
 				<p>Morada<input id="address" type="textbox" placeholder ="Rua da Alegria, 26, Lordelo" /></p>
 				<p>Cidade<input id="city" type="textbox" placeholder="Guimarães" /></p>
 				<p>Código Postal<input id="codP1" type="number" maxlength= 4 placeholder="4815" />-<input id="codP2" type="number" maxlength= 3 placeholder="144" /></p>
 				<input type="button" value="Localizar no mapa" onclick="codeAddress()" />
 			</div>
-			<div id="mapa" style="width:600px; height:320px"></div>
-			<div id="latlong">
-				<p>Latitude: <%= f.text_field :latitude, :placeholder => "39.5" %></p>
-				<p>Longitude: <%= f.text_field :longitude, :placeholder => "-8.3" %></p>
-			</div>
-			<p><input type="button" value="Localizar no mapa" onclick="codeLatLng()" /></p>
+			<div id="mapa" class="pull-right" style="width:600px; height:320px"></div>
+
+			<div class="clearfix"></div>
 		</section>
 	</div>
 </section>
