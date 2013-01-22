@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121205143633) do
+ActiveRecord::Schema.define(:version => 20130116153949) do
 
   create_table "categorizes", :force => true do |t|
     t.integer "store_id"
@@ -47,10 +47,16 @@ ActiveRecord::Schema.define(:version => 20121205143633) do
     t.string   "adress"
     t.string   "postal_code"
     t.string   "city"
-    t.string   "link_banner"
-    t.string   "link_logo"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.string   "banner_file_name"
+    t.string   "banner_content_type"
+    t.integer  "banner_file_size"
+    t.datetime "banner_updated_at"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
   end
 
 end

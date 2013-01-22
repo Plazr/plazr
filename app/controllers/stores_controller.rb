@@ -1,4 +1,7 @@
 class StoresController < ApplicationController
+ 
+ 
+
   def index
     
     @store_categories = StoreCategory.where("parent IS NOT ?",nil)
@@ -35,6 +38,8 @@ class StoresController < ApplicationController
     @store=Store.new    
     @categorize = @store.categorizes.build
   end
+
+
   def create
     @store=Store.new(params[:store])
     respond_to do |format|
@@ -44,12 +49,16 @@ class StoresController < ApplicationController
       system('sh ../shared/create_store_local.sh '+@store.name.to_s.parameterize+' '+@store.id.to_s)
       ## script global
       #system('sh ../shared/create_store.sh '+@store.name.to_s.parameterize+' '+@store.id.to_s)
-      
+
       format.html { redirect_to store_path (@store), :notice => 'Store was successfully created.' }
+
 
     else
       format.html { render :action => "new" }
     end
+
+    
+    
   end
       
   end
@@ -59,6 +68,7 @@ class StoresController < ApplicationController
   def destroy
     @store = Store.find(params[:id])  
     system("kill -9 `lsof -wni tcp:30"+@store.id.to_s+" | grep ruby | awk '{ print  $2 }'`")
+    system("rm -rf ../plazr_stores/"+@store.id.to_s+"_"+@store.name.to_s.parameterize)
     @store.destroy
 
     redirect_to stores_path

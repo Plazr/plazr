@@ -11,9 +11,6 @@ class CreateStores < ActiveRecord::Migration
       t.string :postal_code
       t.string :city
 
-      t.string :link_banner
-      t.string :link_logo
-
       t.timestamps
     end
   end

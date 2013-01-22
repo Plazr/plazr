@@ -11,6 +11,7 @@ gem 'plazr_auth', :git => 'https://github.com/Plazr/plazr_auth.git'
 gem 'cocoon'
 gem 'simple_form'
 gem 'cancan'
+gem 'paperclip', '~> 3.0'
 
 # Gems used only for assets and not required
 # in production environments by default.

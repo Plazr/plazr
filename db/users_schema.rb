@@ -25,11 +25,21 @@ ActiveRecord::Schema.define(:version => 0) do
     t.string   "image_url"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.datetime "deleted_at"
+  end
+
+  create_table "plazr_auth_paypal_accounts", :force => true do |t|
+    t.integer  "store_id"
+    t.string   "api_password"
+    t.string   "api_username"
+    t.string   "signature"
+    t.datetime "deleted_at"
   end
 
   create_table "plazr_auth_role_users", :force => true do |t|
-    t.integer "user_id"
-    t.integer "role_id"
+    t.integer  "user_id"
+    t.integer  "role_id"
+    t.datetime "deleted_at"
   end
 
   create_table "plazr_auth_roles", :force => true do |t|
@@ -37,6 +47,7 @@ ActiveRecord::Schema.define(:version => 0) do
     t.string   "desc"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.datetime "deleted_at"
   end
 
   create_table "plazr_auth_users", :force => true do |t|
@@ -57,6 +68,7 @@ ActiveRecord::Schema.define(:version => 0) do
     t.string   "unconfirmed_email"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.datetime "deleted_at"
     t.string   "first_name"
     t.string   "last_name"
   end
