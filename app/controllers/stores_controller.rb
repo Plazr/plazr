@@ -53,6 +53,7 @@ class StoresController < ApplicationController
 	
 	  unless current_user.roles.detect { |role| role.name == 'admin' }
       	current_user.roles << PlazrAuth::Role.find_by_name('admin')
+      end
 
       format.html { redirect_to store_path (@store), :notice => 'Store was successfully created.' }
 
