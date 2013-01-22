@@ -3,12 +3,19 @@ class StoresController < ApplicationController
     @stores = Store.all
   end
   def new
+<<<<<<< HEAD
     # @json =Store.all.to_gmaps4rails
     @store=Store.new
     @categorize = @store.categorizes.build
   end
   def create
     # @json = Store.all.to_gmaps4rails
+=======
+    @store=Store.new    
+    @categorize = @store.categorizes.build
+  end
+  def create
+>>>>>>> 616f4cc22b3eead7366242ddb73a18b0cc539424
     @store= Store.new(params[:store])
     respond_to do |format|
     if @store.save
