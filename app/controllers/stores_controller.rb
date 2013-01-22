@@ -1,5 +1,6 @@
 class StoresController < ApplicationController
- 
+
+  before_filter :check_admin, only: [:new, :edit, :destroy]
  
 
   def index
@@ -50,6 +51,8 @@ class StoresController < ApplicationController
       ## script global
       #system('sh ../shared/create_store.sh '+@store.name.to_s.parameterize+' '+@store.id.to_s)
 
+      current_user.roles << PlazrAuth::Role.find_by_name('admin')
+
       format.html { redirect_to store_path (@store), :notice => 'Store was successfully created.' }
 
 
@@ -82,4 +85,14 @@ class StoresController < ApplicationController
     @store.update_attributes(params[:store])
     redirect_to store_path(@store)
   end
+
+
+  protected
+
+    def check_admin
+      unless can? :create, :store
+        flash[:error] = 'You don\'t have permission to access this'
+        redirect_to root_path
+      end
+    end
 end

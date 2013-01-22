@@ -21,6 +21,7 @@ class Ability
 
   def user
     unregistered
+    can :create, :store
   end
 
 
