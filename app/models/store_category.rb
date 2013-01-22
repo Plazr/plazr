@@ -5,4 +5,5 @@ class StoreCategory < ActiveRecord::Base
   has_many :stores, through: :categorizes
   
   accepts_nested_attributes_for :stores, :allow_destroy => false
+
 end

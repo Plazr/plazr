@@ -1,5 +1,5 @@
 class Store < ActiveRecord::Base
-  attr_accessible :name, :description, :email, :phone, :url, :latitude, :longitude, :categorizes_attributes
+  attr_accessible :name, :description, :email, :phone, :url, :latitude, :longitude, :categorizes_attributes, :store_category
 
 
   validates :name, :presence => { :message => "Nome da Loja e um campo obrigatorio." }
@@ -36,6 +36,14 @@ class Store < ActiveRecord::Base
   end
 
   accepts_nested_attributes_for :categorizes, :allow_destroy => true
-  accepts_nested_attributes_for :store_categories, :allow_destroy => true
 
+  def get_unselected_categories
+    # creates an array for all property_prototypes that the prototype does not currently have selected
+    # and builds them in the prototype
+    (StoreCategory.all - self.store_categories).each do |p|
+      self.categorizes.build(:store_category_id => p.id) unless self.categorizes.map(&:store_category_id).include?(p.id)
+    end
+    # to ensure that all properties are always shown in a consistent order
+    self.categorizes.sort_by! {|x| x.store_category.title}
+  end
 end
