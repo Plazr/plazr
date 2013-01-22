@@ -5,7 +5,7 @@ class StoresController < ApplicationController
   def new
     # @json =Store.all.to_gmaps4rails
     @store=Store.new
-    @categorize = @store.categorizes.build
+    @store.get_unselected_categories
   end
   def create
     # @json = Store.all.to_gmaps4rails

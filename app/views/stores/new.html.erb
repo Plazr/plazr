@@ -7,7 +7,7 @@
 	</div>
 </div>
 
-<%= simple_form_for(@store, html: {class: 'form-horizontal'}) do |f| %>
+<%= form_for(@store, html: {class: 'form-horizontal'}) do |f| %>
 
 <section id="section-one" class="wrap">
 	<div class="container">
@@ -45,10 +45,11 @@
 					Categorias:
 				</label>
 				<div class="controls">
-					<%= f.simple_fields_for :categorizes do |task| %>
-					<%= render 'categorize_fields', :f => task %>
+					<%= f.fields_for :categorizes do |ff| %>
+						<%= ff.check_box :_destroy, {:checked => ff.object.persisted?}, '0', '1' %>
+						<%= ff.label :_destroy, ff.object.store_category.title %>
+						<%= ff.hidden_field :store_category_id %>				
 					<% end %>
-					<%= link_to_add_association 'Adicionar Categoria', f, :categorizes %>
 				</div>
 			</div>
 			<div class="pull-right buttons-top">
