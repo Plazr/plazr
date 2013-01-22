@@ -8,6 +8,7 @@
 //= require jquery_ujs
 //= require cocoon
 //= require jquery.scrollTo-min
+//= require jquery.ba-hashchange.min
 //= require_tree .
 
 
@@ -35,21 +36,79 @@ $(document).ready(function() {
 		var sectionFourPad = (windowHeight - $(sectionFour).find('.container').css('height').replace(/[^-\d\.]/g, ''))  / 2;
 		$(sectionFour).css({'padding-top':sectionFourPad,'padding-bottom':sectionFourPad})
 	}
+
 	setPaddings();
 	$(window).resize(function() {
 		setPaddings();
 	});
 
+	function showSectionOne() {
+		$(sectionOne).show();
+		$(sectionTwo).hide();
+		$(sectionThree).hide();
+		$(sectionFour).hide();
+	}
 
-	$(sectionTwo).hide();
-	$(sectionThree).hide();
-	$(sectionFour).hide();
+	function showSectionTwo() {
+		$(sectionOne).hide();
+		$(sectionTwo).show();
+		$(sectionThree).hide();
+		$(sectionFour).hide();
+	}
 
-	$(sectionOne).find('button').click(function() {
-		$(sectionOne).fadeOut();
-		$(sectionTwo).fadeIn();
-		$(progress).width('60%');
+	function showSectionThree() {
+		$(sectionOne).hide();
+		$(sectionTwo).hide();
+		$(sectionThree).show();
+		$(sectionFour).hide();
+	}
+
+	function showSectionFour() {
+		$(sectionOne).hide();
+		$(sectionTwo).hide();
+		$(sectionThree).hide();
+		$(sectionFour).show();
+	}
+
+	showSectionOne();
+
+	/* reset the hash when page loads. */
+	// window.location.hash = '';
+	$(window).hashchange(function() {
+		if(!window.location.hash || window.location.hash == '#sectionOne') {
+			showSectionOne();
+			$(progress).css('width', "0%");
+		} else if (window.location.hash == '#sectionTwo') {
+			showSectionTwo();
+			$(progress).css('width', "33%");
+		} else if (window.location.hash == '#sectionThree') {
+			showSectionThree();
+			$(progress).css('width', "66%");
+
+		} else if (window.location.hash == '#sectionFour') {
+			showSectionFour();
+			$(progress).css('width', "100%");
+		}
 	});
+	$(window).hashchange();
+
+
+	var name = $('#section-four').find('.name');
+	var email = $('#section-four').find('.email');
+	var tel = $('#section-four').find('.tel');
+
+	$('#section-one input').change(function() {
+		name.replaceWith($(this).val());
+	});
+
+	$('#section-three #store_email').change(function() {
+		email.replaceWith($(this).val());
+	});
+
+	$('#section-three #store_phone').change(function() {
+		tel.replaceWith($(this).val());
+	});
+
 
 
 	/* Remove the html scroll and create scroll events. */
