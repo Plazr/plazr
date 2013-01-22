@@ -9,6 +9,7 @@
 //= require cocoon
 //= require jquery.scrollTo-min
 //= require jquery.ba-hashchange.min
+//= require_self
 //= require maps
 
 $(document).ready(function() {
