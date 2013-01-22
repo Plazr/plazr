@@ -1,4 +1,4 @@
 <div class='nested-fields'>
-	<%= f.association :store_category, :collection => StoreCategory.all, :prompt => 'Escolhe uma Categoria' %>
+	<%= f.association :store_category, :collection => StoreCategory.where("parent IS NOT ?",nil), :prompt => 'Escolhe uma Categoria' %>
 	<%= link_to_remove_association "Remover", f %><br>
 </div>
