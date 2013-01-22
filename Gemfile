@@ -11,6 +11,7 @@ gem 'plazr_auth', :git => 'https://github.com/Plazr/plazr_auth.git'
 gem 'cocoon'
 gem 'simple_form'
 gem 'cancan'
+gem 'paperclip', '~> 3.0'
 
 #gem 'sqlite3'
 group :production do
