@@ -38,7 +38,7 @@ class Ability
   end
 
 
-  def method_missing
+  def method_missing(method, *args, &block)
     return
   end
 
