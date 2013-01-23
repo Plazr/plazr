@@ -56,7 +56,7 @@
 							<li>
 								<div class="checkbox">
 									<%= ff.check_box :_destroy, {:checked => ff.object.persisted?}, '0', '1' %>
-									<%= ff.object.store_category.title %>
+									<%= ff.object.store_category.title unless ff.object.store_category.nil? %>
 								</div>
 								<%#= ff.label :_destroy, ff.object.store_category.title %>
 								<%= ff.hidden_field :store_category_id %>
