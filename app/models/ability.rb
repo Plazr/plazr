@@ -37,4 +37,9 @@ class Ability
     can :admin, :plazr
   end
 
+
+  def method_missing
+    return
+  end
+
 end
