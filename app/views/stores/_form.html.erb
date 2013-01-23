@@ -11,8 +11,8 @@
 		var myOptions = {
 			center: latlng,
 			zoom: 6,
-  			mapTypeId: google.maps.MapTypeId.HYBRID,
-  			streetViewControl: false
+			mapTypeId: google.maps.MapTypeId.HYBRID,
+			streetViewControl: false
 		}
 		map = new google.maps.Map(document.getElementById("mapa"), myOptions);
 		placeMarker(latlng, 0);
@@ -37,6 +37,8 @@
 
 		map.setCenter(location);
 
+		document.getElementById("store_latitude").value = event.location.lat();
+		document.getElementById("store_longitude").value = event.location.lng();
 
 		var iw = new google.maps.InfoWindow({
 			content: "A sua loja fica aqui!!!"
@@ -138,27 +140,27 @@
 					<div id="latlong">
 						<p>Latitude: <%= f.text_field :latitude, :placeholder => "39.5" %></p>
 						<p>Longitude: <%= f.text_field :longitude, :placeholder => "-8.3" %></p>
-						</p>
-					</div>
-					<p><input type="button" value="Localizar no mapa" onclick="codeLatLng()" /></p>
-
-				</th>
-			</tr>
-			<th align="right">Categorias:</th>
-			<th align="left">
-				<div id='tasks'>
-					<%= f.simple_fields_for :categorizes do |task| %>
-					<%= render 'categorize_fields', :f => task %>
-					<% end %>
-					<%= link_to_add_association 'Adicionar Categoria', f, :categorizes %>
+					</p>
 				</div>
+				<p><input type="button" value="Localizar no mapa" onclick="codeLatLng()" /></p>
+
 			</th>
 		</tr>
-		<tr>
-			<th><%= f.submit%></th>
-		</tr>
-	</table>
-	<% end %>
+		<th align="right">Categorias:</th>
+		<th align="left">
+			<div id='tasks'>
+				<%= f.simple_fields_for :categorizes do |task| %>
+				<%= render 'categorize_fields', :f => task %>
+				<% end %>
+				<%= link_to_add_association 'Adicionar Categoria', f, :categorizes %>
+			</div>
+		</th>
+	</tr>
+	<tr>
+		<th><%= f.submit%></th>
+	</tr>
+</table>
+<% end %>
 </div>
 <footer>
 	<%= yield :scripts %>

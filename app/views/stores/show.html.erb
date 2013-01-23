@@ -1,22 +1,93 @@
-<h1><%= @store.name %></h1>
-Name: <%= @store.name %><br>
-Description: <%= @store.description %><br>
-Email: <%= @store.email %><br>
-Phone: <%= @store.phone %><br>
-URL: <%= @store.url %><br>
-Latitude: <%= @store.latitude %><br>
-Longitude: <%= @store.longitude %><br>
-<p>
-	Categories:<br>
-	<% @store.store_categories.each do |c| %>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<head>
+	<script type="text/javascript">
+	var geocoder;
+	var map;
+	var oldMarker;
+	
+	function initialize() {
+		geocoder = new google.maps.Geocoder();
+		var latlng = new google.maps.LatLng(20, 20);
+		var myOptions = {
+			center: latlng,
+			zoom: 6,
+			mapTypeId: google.maps.MapTypeId.HYBRID,
+			streetViewControl: false
+		}
+		map = new google.maps.Map(document.getElementById("mapa"), myOptions);
+		placeMarker(latlng, 1);
+	}
+
+	function toggleBounce() {
+
+		if (marker.getAnimation() != null) {
+			marker.setAnimation(null);
+		} else {
+			marker.setAnimation(google.maps.Animation.BOUNCE);
+		}
+	}
+
+	function placeMarker(location, first) {
+
+		var marker = new google.maps.Marker({
+			position: location,
+			map: map,
+			animation: google.maps.Animation.DROP,
+			draggable: true
+		});
+
+		if(first != 0){
+			map.setZoom(16);
+		}
+		if (oldMarker != undefined){
+			oldMarker.setMap(null);
+		}
+		oldMarker = marker;
+
+		map.setCenter(location);
+
+
+		var iw = new google.maps.InfoWindow({
+			content: "A sua loja fica aqui!!!"
+		});
+		google.maps.event.addListener(marker, "click", function (e) { iw.open(map, marker); });
+
+		google.maps.event.addListener(marker, 'drag', function(event){
+			document.getElementById("store_latitude").value = event.latLng.lat();
+			document.getElementById("store_longitude").value = event.latLng.lng();
+		});
+		google.maps.event.addListener(marker, 'click', toggleBounce);
+
+	}
+
+	</script>
+</head>
+<body onload="initialize()">
+	<h1><%= @store.name %></h1>
+	Name: <%= @store.name %><br>
+	Description: <%= @store.description %><br>
+	Email: <%= @store.email %><br>
+	Phone: <%= @store.phone %><br>
+	URL: <%= @store.url %><br>
+	Latitude: <%= @store.latitude %><br>
+	Longitude: <%= @store.longitude %><br>
+	<% gmaps4rails(@json) %>
+	<div id="mapa" style="width:600px; height:320px"></div>
+	<p>
+		Categories:<br>
+		<% @store.store_categories.each do |c| %>
 		<%= link_to c.title, store_category_path(c) %>
-	<% end %>
-</p>	
+		<% end %>
+	</p>	
 
-<p>
-	<%= link_to "Editar Loja", edit_store_path(@store) %>
-	<%= link_to "Eliminar Loja", store_path(@store), method: :delete %>
-</p>
+	<p>
+		<%= link_to "Editar Loja", edit_store_path(@store) %>
+		<%= link_to "Eliminar Loja", store_path(@store), method: :delete %>
+	</p>
 
 
-<%= link_to "Voltar para as Lojas", stores_path %>
+	<%= link_to "Voltar para as Lojas", stores_path %>
+	<footer>
+		<%= yield :scripts %>
+	</footer>
+</body></html>
