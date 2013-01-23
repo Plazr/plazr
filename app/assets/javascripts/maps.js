@@ -68,7 +68,7 @@ $(document).ready(function() {
 			if (status == google.maps.GeocoderStatus.OK) {
 				placeMarker(results[0].geometry.location, 1);
 			} else {
-				alert("A localização da sua loja não foi bem sucedida. Certifique-se que escreveu a morada corretamente.");
+				console.log("A localização da sua loja não foi bem sucedida. Certifique-se que escreveu a morada corretamente.");
 			}
 		});
 	}
