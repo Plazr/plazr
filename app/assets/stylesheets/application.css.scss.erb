@@ -1,0 +1,252 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require gmaps4rails
+ *= require bootstrap/bootstrap.css
+ *= require bootstrap/bootstrap-responsive.css
+ *= require_self
+*/
+
+@font-face {
+	font-family: 'Tabitha';
+	src: url('/font/tabitha.ttf');
+}
+
+@font-face {
+	font-family: 'Open Sans';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Open Sans'), local('OpenSans'), url('/font/cJZKeOuBrn4kERxqtaUH3bO3LdcAZYWl9Si6vvxL-qU.woff') format('woff');
+}
+
+@mixin social-icons {
+	height: 64px;
+	width: 64px;
+	float: left;
+	padding: 0 16px 0 16px;
+}
+
+
+$color0: #FFFFFF;
+$color1: #515151;
+$color2: #1A82F7;
+$color3: #E1E4E9;
+
+$color4: #F6F6F8;
+$color4-rgba: rgba(255, 255, 255, 0.9);;
+// $color4-rgba: rgba(246, 246, 248, 0.9);;
+
+$intel-blue: #0574b2;
+
+$text: #333333;
+$text-white: #FFFFFF;
+
+$colorL: white;
+$colorLA: rgba(255, 255, 255, 0.9);
+$colorDDD: #CCEBF1;
+$colorDDDA: rgba(204, 235, 241, 0.9);
+$colorDD: #DAF3F8;
+$colorD: #EEFCFF;
+$color: black;
+
+@mixin hr-border-bottom {
+	border-bottom: 1px solid $color1;
+}
+
+body {
+	background: url(<%= image_path('we.JPG') %>) no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	// background-color: $colorD;
+}
+
+.wrap {
+	width: 100%;
+}
+
+#section-one, #section-two, #section-three, #section-four, #section-five {
+	font-size: 20px;
+	.container {
+		border-radius: 15px;
+		> header {
+			// border-radius: 15px;
+			padding: 1em;
+			margin-bottom: 1em;
+			// background-color: $colorDDDA;
+			// background-image: linear-gradient(bottom, rgb(218,243,248) 6%, rgb(204,235,241) 51%);
+			// background-image: -o-linear-gradient(bottom, rgb(218,243,248) 6%, rgb(204,235,241) 51%);
+			// background-image: -moz-linear-gradient(bottom, rgb(218,243,248) 6%, rgb(204,235,241) 51%);
+			// background-image: -webkit-linear-gradient(bottom, rgb(218,243,248) 6%, rgb(204,235,241) 51%);
+			// background-image: -ms-linear-gradient(bottom, rgb(218,243,248) 6%, rgb(204,235,241) 51%);
+
+			// background-image: -webkit-gradient(
+			// 	linear,
+			// 	left bottom,
+			// 	left top,
+			// 	color-stop(0.06, rgb(218,243,248)),
+			// 	color-stop(0.51, rgb(204,235,241))
+			// 	);
+		}
+		> section {
+			position: relative;
+			font-size: 14px;
+			border-radius: 15px;
+			border: 1px solid #EEE;
+			padding: 1em;
+			background-color: $colorLA;
+		}
+		.buttons-top {
+			position: absolute;
+			top: 1em;
+			right: 1em;
+		}
+	}
+	h1, h2, h3 {
+		margin-top: 0;
+	}
+}
+
+#section-one {
+	h1 {
+		padding-bottom: 20px;
+		font-size: 60px;
+	}
+	.container {
+		> section {
+			margin-bottom: 1em;
+		}
+		section {
+			label {
+				// font-size: 20px;
+				line-height: 26px;
+				vertical-align: center;
+				float: left;
+				padding-right: 1em;
+			}
+		}
+	}
+}
+
+#section-two {
+	.logo {
+		position: absolute;
+		input {
+			line-height: 1px;
+			// height: 18px;
+			vertical-align: middle;
+			// position: relative;
+			// bottom: 0;
+			// left: 1em;
+		}
+	}
+}
+
+#section-four {
+	.buttons {
+		padding-bottom: 10px;
+	}
+	#codP1 {
+		width: 55px;
+	}
+	#codP2 {
+		width: 45px;
+	}
+}
+
+.progress-wrap {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	.progress {
+		height: 20px;
+		width: 100%;
+		background: $color4-rgba;
+		.bar {
+			height: 100%;
+			width: 0;
+		}
+	}
+}
+
+.wrap.top-container {
+	// background: $color4-rgba;
+	background-color: #000000;
+	color: $text;
+	position: fixed;
+	top: 0;
+ 	// box shadows
+ 	-webkit-box-shadow:  0 0 10px rgba(0, 0, 0, 0.5);
+ 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+ 	@include hr-border-bottom;
+ 	z-index: 1;
+ 	a {
+ 		color: $colorL;
+ 		&:hover {
+ 			text-decoration: none;
+ 		}
+ 	}
+ 	.top-bar {
+ 		padding: 0.4em 0 0.4em 0;
+ 		h3 {
+ 			background: url(<%= image_path('logo.png') %>) left top no-repeat;
+ 			background-size: auto 1.3em;
+ 			font-family: 'Tabitha';
+ 			padding-left: 1.4em;
+ 			margin: 0.1em 0 0.1em 0;
+
+ 		}
+ 	}
+ 	.navigation {
+ 		margin: 0;
+ 		padding: 10px;
+ 		li {
+ 			display: inline;
+ 			list-style-type: none;
+ 			padding-left: 20px;
+ 		}
+ 	}
+ }
+
+ ul.checklistbox {
+ 	border: 1px solid #CCC;
+ 	border-radius: 4px;
+	list-style: none;
+	max-height: 7em;
+	margin: 0;
+	overflow-y: scroll;
+	overflow: -moz-scrollbars-vertical;
+	overflow: -webkit-scrollbars-vertical;
+	width: 543px;
+
+	li {
+		padding-left: .5em;
+		padding-right: .5em;
+		line-height: 2em;
+	}
+
+	li:nth-child(odd) {
+		background-color: lightgrey;
+	}
+
+ }
+
+ ul.checklistbox::-webkit-scrollbar {
+	-webkit-appearance: none;
+	width: 11px;
+	height: 11px;
+}
+
+ul.checklistbox::-webkit-scrollbar-thumb {
+	border-radius: 8px;
+	border: 2px solid white;
+	background-color: rgba(0, 0, 0, .5);
+}

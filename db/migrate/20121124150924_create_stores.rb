@@ -6,8 +6,10 @@ class CreateStores < ActiveRecord::Migration
       t.string :email
       t.integer :phone
       t.string :url
-      
-       
+      t.string :adress
+      t.string :postal_code
+      t.string :city
+
       t.timestamps
     end
   end

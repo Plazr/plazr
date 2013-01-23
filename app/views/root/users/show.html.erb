@@ -1,0 +1,29 @@
+<h1>User: <%= @user.first_name %><%= @user.last_name %> </h1>
+
+<p>Email : <%= @user.email %></p>
+
+<p>
+	<%= link_to "Edit", edit_root_user_path(@user) %>
+	<%= link_to "Delete", root_user_path(@user), method: :delete , data: { confirm: 'Are you sure?' }%>
+</p>
+
+<h2>Roles</h2>
+	<ul>
+	<% @user.roles.each do |r| %>
+		<li>
+			<%= r.name %>
+			<%= link_to "Delete" , root_rem_role_path(:user_id => @user.id, :role_id => r.id)%>
+		</li>
+	<% end %>
+	<br>
+	<% if(@roles.count>0) %>
+		<%= form_tag root_add_role_path(:user_id => @user.id),:method => 'get' do %>
+			<%= select_tag :role_id, options_for_select(@roles.map{|a| [a.name,a.id]}) %>
+			<%= submit_tag 'Add Role' %>
+		<% end %>
+	<% end %>
+
+</ul>
+<br>
+
+<%= link_to "Back to Users", root_users_path %>

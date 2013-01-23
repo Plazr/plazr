@@ -1,18 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Plazr</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
+	<title>Plazr</title>
+	<%= stylesheet_link_tag "application", :media => "all" %>
+	<%= javascript_include_tag "application" %>
+	<%= yield :javascript_includes %>
+	<%= csrf_meta_tags %>
 </head>
 <body>
+	<div class="wrap top-container">
+		<div class="container">
+			<div class="row-fluid top-bar">
+				<div class="pull-left">
+					<h3><a href="#headerAnn">Plazr</a></h3>
+				</div>
+				<div>
+					<ul class="navigation pull-right">
+						<li><a href="#section-two">O que oferece?</a></li>
+						<li><a href="#headerAboutUs">Como surgiu?</a></li>
+						<li><a href="https://www.facebook.com/plazr">Facebook</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--
+<% flash.each do |name, msg| %>
+  <% if msg.is_a?(String) %>
+    <%= content_tag :div, msg, :id => "flash_#{name}" %>
+  <% end %>
+<% end %>
 
 <h1>Plazr</h1>
 
 <h2>Current User: <%= current_user.to_s %>
+	-->
 
-<%= yield %>
+	<%= yield %>
 
+	<footer>
+		<%= yield :scripts %>
+	</footer>
 </body>
 </html>

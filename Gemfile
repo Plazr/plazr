@@ -6,6 +6,14 @@ gem 'rails', '3.2.9'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
+gem 'jquery-rails'
+gem 'plazr_auth', :git => 'https://github.com/Plazr/plazr_auth.git'
+gem 'cocoon'
+gem 'simple_form'
+gem 'cancan'
+gem 'paperclip', '~> 3.0'
+
+#gem 'sqlite3'
 group :production do
   gem 'pg'
 end
@@ -21,12 +29,6 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
 end
-
-
-gem 'jquery-rails'
-gem 'plazr_auth', :git => 'git@github.com:Plazr/plazr_auth.git'
-gem 'cocoon'
-gem 'simple_form'
 
 group :development, :test do
   #gem 'thin'
@@ -53,17 +55,3 @@ end
 gem 'gmaps4rails'
 gem 'geocoder'
 
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'debugger'
