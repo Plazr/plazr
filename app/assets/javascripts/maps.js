@@ -62,9 +62,8 @@ $(document).ready(function() {
 	function codeAddress() {
 		var address = document.getElementById("address").value;
 		var city = document.getElementById("city").value;
-		var codP1 =  document.getElementById("codP1").value;
-		var codP2 =  document.getElementById("codP2").value;
-		var location = address + ", " + city + ", " + codP1 + "-" + codP2;
+		var codP =  document.getElementById("codP").value;
+		var location = address + ", " + city + ", " + codP;
 		geocoder.geocode( { 'address': location}, function(results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
 				placeMarker(results[0].geometry.location, 1);
@@ -90,4 +89,5 @@ $(document).ready(function() {
 	}
 
 	initialize();
+	$('#update_map').click(codeAddress());
 });
