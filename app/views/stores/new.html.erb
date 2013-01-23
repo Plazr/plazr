@@ -51,11 +51,18 @@
 					Categorias:
 				</label>
 				<div class="controls">
-					<%= f.fields_for :categorizes do |ff| %>
-						<%= ff.check_box :_destroy, {:checked => ff.object.persisted?}, '0', '1' %>
-						<%= ff.label :_destroy, ff.object.store_category.title %>
-						<%= ff.hidden_field :store_category_id %>
-					<% end %>
+					<ul class="checklistbox input-xxlarge">
+						<%= f.fields_for :categorizes do |ff| %>
+							<li>
+								<div class="checkbox">
+									<%= ff.check_box :_destroy, {:checked => ff.object.persisted?}, '0', '1' %>
+									<%= ff.object.store_category.title %>
+								</div>
+								<%#= ff.label :_destroy, ff.object.store_category.title %>
+								<%= ff.hidden_field :store_category_id %>
+							</li>
+						<% end %>
+					</ul>
 				</div>
 			</div>
 			<div class="control-group">
