@@ -55,9 +55,11 @@ class StoresController < ApplicationController
       ## script global
       #system('sh ../shared/create_store.sh '+@store.name.to_s.parameterize+' '+@store.id.to_s)
 	
-	  unless current_user.roles.detect { |role| role.name == 'admin' }
-      	current_user.roles << PlazrAuth::Role.find_by_name('admin')
-      end
+	  #unless current_user.roles.detect { |role| role.name == 'admin' }
+      #	current_user.roles << PlazrAuth::Role.find_by_name('admin')
+      #end
+      new_role = PlazrAuth::Role.create name: "admin_#{@store.id}"
+      current_user.roles << new_role
 
       format.html { redirect_to(@store, :notice => 'A sua loja foi criada com sucesso.') }
     else
