@@ -1,3 +1,9 @@
+<% content_for :javascript_includes do %>
+	<%= javascript_include_tag :new_stores %>
+	<%= javascript_include_tag :maps %>
+	<%= javascript_include_tag "jquery.ba-hashchange.min" %>
+<% end %>
+
 <div class="progress-wrap">
 	<div class="container">
 		<div class="progress">
@@ -48,8 +54,22 @@
 					<%= f.fields_for :categorizes do |ff| %>
 						<%= ff.check_box :_destroy, {:checked => ff.object.persisted?}, '0', '1' %>
 						<%= ff.label :_destroy, ff.object.store_category.title %>
-						<%= ff.hidden_field :store_category_id %>				
+						<%= ff.hidden_field :store_category_id %>
 					<% end %>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">
+					<%= f.label :url, "URL Pretendido:" %>
+				</label>
+				<div class="controls">
+					<%= f.url_field :url, :placeholder => "http://www.plazr.net", class: 'input-xxlarge' %>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">Upload do logo</label>
+				<div class="controls logo">
+					<%= f.file_field :logo %>
 				</div>
 			</div>
 			<div class="pull-right buttons-top">
@@ -76,16 +96,6 @@
 					<%= f.text_field :email, :required => true, :placeholder => "plazr@example.com", class: 'input-xxlarge' %>
 				</div>
 			</div>
-
-			<div class="control-group">
-				<label class="control-label">
-					<%= f.label :url, "URL Pretendido:" %>
-				</label>
-				<div class="controls">
-					<%= f.url_field :url, :placeholder => "http://www.plazr.net", class: 'input-xxlarge' %>
-				</div>
-			</div>
-
 			<div class="control-group">
 				<label class="control-label">
 					<%= f.label :phone, "Telefone da Loja:" %>
@@ -135,13 +145,12 @@
 			</div>
 		-->
 		<div class="pull-right">
-						<div class="pull-right buttons">
+			<div class="pull-right buttons">
 				<a href="#sectionThree" class="btn btn-primary">Anterior</a>
 				<a href="#sectionFive" class="btn btn-primary">Continuar</a>
 			</div>
 			<div class="clearfix"></div>
 			<div id="mapa" class="" style="width:600px; height:280px"></div>
-
 		</div>
 		<div class="clearfix"></div>
 	</section>
