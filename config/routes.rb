@@ -10,4 +10,5 @@ Plazr::Application.routes.draw do
   resources :payment_methods
 
   get 'pages/prices' => 'pages#prices'
+  get 'pages/terms' => 'pages#terms'
 end
