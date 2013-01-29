@@ -8,4 +8,5 @@
 //= require jquery_ujs
 //= require cocoon
 //= require jquery.scrollTo-min
+//= require bootstrap-scrollspy.js
 //= require_self
