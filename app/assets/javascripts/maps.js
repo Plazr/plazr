@@ -38,7 +38,7 @@ $(document).ready(function() {
 
 
 		var iw = new google.maps.InfoWindow({
-			content: "A sua loja fica aqui!!!"
+			content: "A sua loja fica aqui!"
 		});
 		google.maps.event.addListener(marker, "click", function (e) { iw.open(map, marker); });
 

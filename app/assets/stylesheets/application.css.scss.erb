@@ -12,6 +12,7 @@
  *= require bootstrap/bootstrap.css
  *= require bootstrap/bootstrap-responsive.css
  *= require_self
+ *= require new_stores.css
 */
 
 @font-face {
@@ -37,7 +38,8 @@
 $color1: #515151;
 
 $color4: #F6F6F8;
-$color4-rgba: rgba(255, 255, 255, 0.9);;
+
+$whiteTransparency: rgba(255, 255, 255, 0.9);
 
 $text: #333333;
 $text-white: #FFFFFF;
@@ -64,103 +66,10 @@ body {
 }
 
 
-#section-one, #section-two, #section-three, #section-four, #section-five {
-	width: 100%;
-	font-size: 20px;
-	.container {
-		border-radius: 15px;
-		> header {
-			padding: 0 1em 1em 1em;
-			margin-bottom: 1em;
-		}
-		> section {
-			position: relative;
-			font-size: 14px;
-			border-radius: 15px;
-			border: 1px solid #EEE;
-			padding: 1em;
-			background-color: $colorLA;
-		}
-
-	}
-	h1, h2, h3 {
-		margin-top: 0;
-	}
-	.buttons-top {
-		position: absolute;
-		top: 1em;
-		right: 1em;
-	}
-	.control-group {
-		margin: 1em;
-	}
-}
-
-#section-one {
-	h1 {
-		padding-bottom: 20px;
-		font-size: 60px;
-	}
-	.container {
-		> section {
-			margin-bottom: 1em;
-		}
-		section {
-			label {
-				// font-size: 20px;
-				line-height: 26px;
-				vertical-align: center;
-				float: left;
-				padding-right: 1em;
-			}
-		}
-	}
-}
-
-#section-two {
-	.logo {
-		position: absolute;
-		input {
-			line-height: 1px;
-			// height: 18px;
-			vertical-align: middle;
-			// position: relative;
-			// bottom: 0;
-			// left: 1em;
-		}
-	}
-}
-
-#section-four {
-	.buttons {
-		padding-bottom: 10px;
-	}
-	#codP1 {
-		width: 55px;
-	}
-	#codP2 {
-		width: 45px;
-	}
-}
-
-.progress-wrap {
-	position: fixed;
-	bottom: 0;
-	width: 100%;
-	.progress {
-		height: 20px;
-		width: 100%;
-		background: $color4-rgba;
-		.bar {
-			height: 100%;
-			width: 0;
-		}
-	}
-}
 
 .top-container {
 	width: 100%;
-	// background: $color4-rgba;
+	// background: $whiteTransparency;
 	background-color: #000000;
 	color: $text;
 	position: fixed;

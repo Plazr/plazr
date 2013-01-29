@@ -7,7 +7,6 @@ $(document).ready(function() {
 		this.elem_progress = elem_progress;
 		this.progress = progress;
 		this.updatePadding = function() {
-			console.log("UPDATING PADDING");
 			var windowHeight = $(window).height();
 			var section_padding = (windowHeight - $(this.elem).find('.container').css('height').replace(/[^-\d\.]/g, ''))  / 2;
 			$(this.elem).css({'padding-top':section_padding,'padding-bottom':section_padding});
