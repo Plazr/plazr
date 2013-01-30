@@ -198,16 +198,30 @@
 	</div>
 </div>
 <br>
+
 <div class="row-fluid">
 	<div class="span4 offset5">
 		<label class="checkbox" >
-			<input type="checkbox">
+			<input id="check" type="checkbox" required>
 			<h5>Eu li e concordo com os termos e condições</h5>
 		</label>
 	</div>
 	<div class="span3">
 		<div id="content">
-			<button class="btn btn-primary" type="button">Continuar ></button>
+			<button class="btn btn-primary" type="button" id="bt_cont">Continuar ></button>
 		</div>
 	</div>
 </div>
+<script>
+	$(document).ready(function(){
+
+		$('#bt_cont').click(function(){
+			if ($('#check')[0].checked){
+				alert("12");
+			}
+			else{
+				alert("Antes de prosseguir precisa de ler e aceitar os termos e condições deste serviço!!!");
+			}
+		});
+	});
+</script>
