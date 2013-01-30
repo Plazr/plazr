@@ -12,50 +12,15 @@
  *= require bootstrap/bootstrap.css
  *= require bootstrap/bootstrap-responsive.css
  *= require_self
- *= require new_stores.css
+ *= require stores/new
+ *= require pages/prices
+ *= require topbar
+ *= require checklistbox
 */
 
-@font-face {
-	font-family: 'Tabitha';
-	src: url('/font/tabitha.ttf');
-}
+@import 'partials/colors';
+@import 'partials/fonts';
 
-@font-face {
-	font-family: 'Open Sans';
-	font-style: normal;
-	font-weight: 400;
-	src: local('Open Sans'), local('OpenSans'), url('/font/cJZKeOuBrn4kERxqtaUH3bO3LdcAZYWl9Si6vvxL-qU.woff') format('woff');
-}
-
-@mixin social-icons {
-	height: 64px;
-	width: 64px;
-	float: left;
-	padding: 0 16px 0 16px;
-}
-
-
-$color1: #515151;
-
-$color4: #F6F6F8;
-
-$whiteTransparency: rgba(255, 255, 255, 0.9);
-
-$text: #333333;
-$text-white: #FFFFFF;
-
-$colorL: white;
-$colorLA: rgba(255, 255, 255, 0.9);
-$colorDDD: #CCEBF1;
-$colorDDDA: rgba(204, 235, 241, 0.9);
-$colorDD: #DAF3F8;
-$colorD: #EEFCFF;
-
-$color: black;
-
-@mixin hr-border-bottom {
-	border-bottom: 1px solid $color1;
-}
 
 body {
 	background: url(<%= image_path('we.JPG') %>) no-repeat center center fixed;
@@ -64,80 +29,3 @@ body {
 	-o-background-size: cover;
 	background-size: cover;
 }
-
-
-
-.top-container {
-	width: 100%;
-	// background: $whiteTransparency;
-	background-color: #000000;
-	color: $text;
-	position: fixed;
-	top: 0;
- 	// box shadows
- 	-webkit-box-shadow:  0 0 10px rgba(0, 0, 0, 0.5);
- 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
- 	@include hr-border-bottom;
- 	z-index: 1;
- 	a {
- 		color: $colorL;
- 		&:hover {
- 			text-decoration: none;
- 		}
- 	}
- 	.top-bar {
- 		padding: 0.4em 0 0.4em 0;
- 		h3 {
- 			background: url(<%= image_path('logo.png') %>) left top no-repeat;
- 			background-size: auto 1.3em;
- 			font-family: 'Tabitha';
- 			padding-left: 1.4em;
- 			margin: 0.1em 0 0.1em 0;
-
- 		}
- 	}
- 	.navigation {
- 		margin: 0;
- 		padding: 10px;
- 		li {
- 			display: inline;
- 			list-style-type: none;
- 			padding-left: 20px;
- 		}
- 	}
- }
-
- ul.checklistbox {
- 	border: 1px solid #CCC;
- 	border-radius: 4px;
- 	list-style: none;
- 	max-height: 7em;
- 	margin: 0;
- 	overflow-y: scroll;
- 	overflow: -moz-scrollbars-vertical;
- 	overflow: -webkit-scrollbars-vertical;
- 	width: 543px;
-
- 	li {
- 		padding-left: .5em;
- 		padding-right: .5em;
- 		line-height: 2em;
- 	}
-
- 	li:nth-child(odd) {
- 		background-color: lightgrey;
- 	}
-
- }
-
- ul.checklistbox::-webkit-scrollbar {
- 	-webkit-appearance: none;
- 	width: 11px;
- 	height: 11px;
- }
-
- ul.checklistbox::-webkit-scrollbar-thumb {
- 	border-radius: 8px;
- 	border: 2px solid white;
- 	background-color: rgba(0, 0, 0, .5);
- }
