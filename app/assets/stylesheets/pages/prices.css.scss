@@ -1,42 +1,100 @@
 @import 'partials/colors';
 
+$colorFree: #808080;
+$colorBasic: #76cac6;
+$colorProfessional: #76b572;
+$borderColor: #EEE;
+
+.free {
+	color: $colorFree;
+}
+
+.basic {
+	color: $colorBasic;
+}
+
+.professional {
+	color: $colorProfessional;
+}
+
 #page-prices {
 	padding-top: 120px;
 	.container {
-		padding: 1em 2em 0 2em;
+		margin-top: 1em;
+		margin-bottom: 4em;
+		padding: 1em 2em 2em 2em;
 		background-color: white;
 	}
 }
 
 #page-prices table {
 	width: 100%;
-	// align prices to center
-	tr:nth-child(2) td {
-		text-align: center;
+	border-bottom: 1px solid $borderColor;
+	tr td {
+		border-left: 1px solid $borderColor;
+		border-right: 1px solid $borderColor;
 	}
-	// padding in all cells
-	tr th, tr td {
-		padding: 0 1em 0 1em;
-		h2 {
-		}
+
+	tr:not(:nth-child(6)) td  {
+		vertical-align: bottom;
+		padding: 1em;
 	}
+
+	tr:nth-child(6) td {
+		vertical-align: baseline;
+		padding: 1em;
+	}
+
+	tr:not(:nth-child(6)) td > div {
+		padding-bottom: 10px;
+		border-bottom: 1px dashed $colorFree;
+	}
+
+	tr:not(:nth-child(6)) td {
+
+	}
+
+	tr td:nth-child(2), tr th:nth-child(2) {
+		border-left: 1px dashed $colorFree;
+		border-right: 1px dashed $colorFree;
+	}
+
 	tr th {
 		h2 {
+			font-family: Lato;
+			font-weight: 300;
 			color: white;
 		}
 		background-color: black;
 		padding: 10px;
 	}
+
 	tr th:nth-child(1) {
-		color: #808080;
+		color: $colorFree;
 	}
+
 	tr th:nth-child(2) {
-		color: #76cac6;
-		border-left: 1px dotted white;
-		border-right: 1px dotted white;
+		color: $colorBasic;
 	}
+
 	tr th:nth-child(3) {
-		color: #76b572;
+		color: $colorProfessional;
+	}
+
+	tr:last-child td {
+		text-align: center;
+	}
+
+	tr:last-child td:nth-child(1) a {
+		background: white;
+	}
+
+	tr:last-child td:nth-child(2) a {
+		background: $colorBasic;
+	}
+
+	tr:last-child td:nth-child(3) a {
+		background: $colorProfessional;
 	}
 	// tr th {
 	// 	-moz-border-radius-topright: 20px;
