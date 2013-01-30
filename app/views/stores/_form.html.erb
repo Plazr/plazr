@@ -5,6 +5,7 @@
 	var map;
 	var oldMarker;
 	
+<<<<<<< HEAD
 	function initialize() {
 		geocoder = new google.maps.Geocoder();
 		var latlng = new google.maps.LatLng(39.5, -8.3);
@@ -17,6 +18,44 @@
 		map = new google.maps.Map(document.getElementById("mapa"), myOptions);
 		placeMarker(latlng, 0);
 	}
+=======
+	<%= f.label :name, "Title" %>
+	<%= f.text_field :name %><br>
+	<%= f.label :description, "Description" %>
+	<%= f.text_field :description %><br>
+	<%= f.label :email, "Email" %>
+	<%= f.text_field :email %><br>
+	<%= f.label :phone, "Phone" %>
+	<%= f.text_field :phone %><br>
+	<%= f.label :url, "URL" %>
+	<%= f.text_field :url %><br>
+
+	<%= f.label :adress, "Adress" %>
+	<%= f.text_field :adress %><br>
+
+	<%= f.label :postal_code, "Postal Code" %>
+	<%= f.text_field :postal_code %><br>
+
+	<%= f.label :city, "City" %>
+	<%= f.text_field :city %><br><br>
+
+  <%= f.label :logo %>
+	<%= f.file_field :logo %><br>
+
+  <%= f.label :banner %>
+	<%= f.file_field :banner %><br>
+
+  <h3>Categories</h3>
+  <div id='tasks'>
+    <%= f.simple_fields_for :categorizes do |task| %>
+      <%= render 'categorize_fields', :f => task %>
+  	<% end %>
+    <%= link_to_add_association 'Add Category', f, :categorizes %><br>
+	</div>
+  <p>
+  	<%= f.submit 'Save Store' %>
+  </p>
+>>>>>>> 60f37d18b967218f66fc0927f8c77d699a8ceb61
 
 	function placeMarker(location, first) {
 

@@ -204,8 +204,21 @@
 				<span>Eu li e concordo com os termos e condições</span>
 			</div>
 			<div class="pull-right">
-				<button class="btn btn-primary">Continuar</button>
+				<%= link_to 'Continuar', new_store_path, class: 'btn btn-primary' %>
 			</div>
 		</div>
 	</div>
 </div>
+<script>
+	$(document).ready(function(){
+
+		$('#bt_cont').click(function(){
+			if ($('#check')[0].checked){
+				alert("12");
+			}
+			else{
+				alert("Antes de prosseguir precisa de ler e aceitar os termos e condições deste serviço!!!");
+			}
+		});
+	});
+</script>
