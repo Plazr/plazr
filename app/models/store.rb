@@ -84,11 +84,6 @@ class Store < ActiveRecord::Base
   end
 
 
-  validates_attachment_presence :logo
-  validates_attachment_size :logo, :less_than => 5.megabytes
-  #validates_attachment_content_type :logo, :content_type => ['image/jpeg', 'image/png']
-
-
   def get_unselected_categories
     # creates an array for all property_prototypes that the prototype does not currently have selected
     # and builds them in the prototype
