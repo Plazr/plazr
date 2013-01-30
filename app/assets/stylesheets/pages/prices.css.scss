@@ -1,0 +1,113 @@
+@import 'partials/colors';
+@import 'partials/functions';
+
+$colorFree: #808080;
+$colorBasic: #76cac6;
+$colorProfessional: #76b572;
+$borderColor: #EEE;
+
+.free {
+	color: $colorFree;
+}
+
+.basic {
+	color: $colorBasic;
+}
+
+.professional {
+	color: $colorProfessional;
+}
+
+#page-prices {
+	padding-top: 120px;
+	@include container;
+}
+
+#page-prices table {
+	width: 100%;
+	border-bottom: 1px solid $borderColor;
+	tr td {
+		border-left: 1px solid $borderColor;
+		border-right: 1px solid $borderColor;
+	}
+
+	tr:not(:nth-child(6)) td  {
+		vertical-align: bottom;
+		padding: 1em;
+	}
+
+	tr:nth-child(6) td {
+		vertical-align: baseline;
+		padding: 1em;
+	}
+
+	tr:not(:nth-child(6)) td > div {
+		padding-bottom: 10px;
+		border-bottom: 1px dashed $colorFree;
+	}
+
+	tr:not(:nth-child(6)) td {
+
+	}
+
+	tr td:nth-child(2), tr th:nth-child(2) {
+		border-left: 1px dashed $colorFree;
+		border-right: 1px dashed $colorFree;
+	}
+
+	tr th {
+		h2 {
+			font-family: Lato;
+			font-weight: 300;
+			color: white;
+		}
+		background-color: black;
+		padding: 10px;
+	}
+
+	tr th:nth-child(1) {
+		color: $colorFree;
+	}
+
+	tr th:nth-child(2) {
+		color: $colorBasic;
+	}
+
+	tr th:nth-child(3) {
+		color: $colorProfessional;
+	}
+
+	tr:last-child td {
+		text-align: center;
+	}
+
+	tr:last-child td:nth-child(1) a {
+		background: white;
+	}
+
+	tr:last-child td:nth-child(2) a {
+		background: $colorBasic;
+	}
+
+	tr:last-child td:nth-child(3) a {
+		background: $colorProfessional;
+	}
+	// tr th {
+	// 	-moz-border-radius-topright: 20px;
+	// 	border-top-right-radius: 20px;
+	// 	-moz-border-radius-topleft: 20px;
+	// 	border-top-left-radius: 20px;
+	// }
+	// tr th:nth-child(1) {
+	// 	background-color: #d5e4f5;
+	// 	color: #FF7C4B;
+	// }
+	// tr th:nth-child(2) {
+	// 	background-color: #d5e4f5;
+	// 	color: #FFD14B;
+	// }
+	// tr th:nth-child(3) {
+	// 	background-color: #d5e4f5;
+	// 	color: #3F87BA;
+	// }
+}

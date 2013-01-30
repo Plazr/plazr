@@ -9,13 +9,13 @@ Longitude: <%= @store.longitude %><br>
 <p>
 	Categories:<br>
 	<% @store.store_categories.each do |c| %>
-		<%= link_to c.title, store_category_path(c) %>
+		<%= link_to c.title, root_store_category_path(c) %>
 	<% end %>
 </p>	
 
 <p>
 	<%= link_to "Editar Loja", edit_store_path(@store) %>
-	<%= link_to "Eliminar Loja", store_path(@store), method: :delete %>
+	<%= link_to "Eliminar Loja", store_path(@store), method: :delete, data: { confirm: 'Tem a certeza?' } %>
 </p>
 
 

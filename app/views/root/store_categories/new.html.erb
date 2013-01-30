@@ -1,0 +1,25 @@
+<% if(params[:parent]) %>
+	<h1>Create Store Sub-Category</h1>
+<% else %>
+	<h1>Create Store Category</h1>
+<% end %>
+
+<%= form_for [:root,@category] do |f| %>
+	<ul>
+	<% @category.errors.full_messages.each do |error| %>
+		<li><%= error %></li>
+	<% end %>
+	</ul>
+	<p>
+		<%= f.label :title %><br>
+		<%= f.text_field :title %>
+	</p>
+	<p>
+		<%= f.label :description %><br>
+		<%= f.text_field :description %>
+	</p>
+		<%= f.hidden_field :parent, :value => params[:parent] if params[:parent] %>
+	<p>
+		<%= f.submit %>
+	</p>
+<% end %>

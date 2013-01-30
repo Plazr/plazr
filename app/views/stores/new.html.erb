@@ -1,3 +1,8 @@
+<% content_for :javascript_includes do %>
+	<%= javascript_include_tag :new_store %>
+	<%= javascript_include_tag :maps %>
+<% end %>
+
 <div class="progress-wrap">
 	<div class="container">
 		<div class="progress">
@@ -7,14 +12,14 @@
 	</div>
 </div>
 
-<%= simple_form_for(@store, html: {class: 'form-horizontal'}) do |f| %>
+<%= form_for(@store, html: {class: 'form-horizontal'}) do |f| %>
 
-<section id="section-one" class="wrap">
+<section id="section-one">
 	<div class="container">
-		<section>
+		<header>
 			<h1>Bem-Vindo ao Plazr!</h1>
 			<p>Utilize o Plazr para criar a sua loja online!<br />Deve preencher o formulário das próximas três etapas para concluir o prcesso de criar a sua loja!</p>
-		</section>
+		</header>
 		<section>
 			<div class="input-append">
 				<label>Indique que nome pretende dar à sua loja: </label>
@@ -25,19 +30,19 @@
 	</div>
 </section>
 
-<section id="section-two" class="wrap">
+<section id="section-two">
 	<div class="container">
-		<section>
+		<header>
 			<h2>Informação Básica</h2>
 			<p>Deve indificar uma descrição para a loja e associa-la a uma ou mais categorias.</p>
-		</section>
+		</header>
 		<section>
 			<div class="control-group">
 				<label class="control-label">
-					Insira uma descrição para a loja:
+					Descrição da loja:
 				</label>
 				<div class="controls">
-					<%= f.text_area :description, :rows => 2, :required => false, :placeholder => "O Plazr permite criar uma loja online.", class: 'input-xxlarge' %>
+					<%= f.text_field :description, :rows => 2, :required => false, :placeholder => "O Plazr permite criar uma loja online.", class: 'input-xxlarge' %>
 				</div>
 			</div>
 			<div class="control-group">
@@ -45,13 +50,35 @@
 					Categorias:
 				</label>
 				<div class="controls">
-					<%= f.simple_fields_for :categorizes do |task| %>
-					<%= render 'categorize_fields', :f => task %>
-					<% end %>
-					<%= link_to_add_association 'Adicionar Categoria', f, :categorizes %>
+					<ul class="checklistbox input-xxlarge">
+						<%= f.fields_for :categorizes do |ff| %>
+							<li>
+								<div class="checkbox">
+									<%= ff.check_box :_destroy, {:checked => ff.object.persisted?}, '0', '1' %>
+									<%= ff.object.store_category.title unless ff.object.store_category.nil? %>
+								</div>
+								<%#= ff.label :_destroy, ff.object.store_category.title %>
+								<%= ff.hidden_field :store_category_id %>
+							</li>
+						<% end %>
+					</ul>
 				</div>
 			</div>
-			<div class="pull-right">
+			<div class="control-group">
+				<label class="control-label">
+					<%= f.label :url, "URL Pretendido:" %>
+				</label>
+				<div class="controls">
+					<%= f.text_field :url, :placeholder => "http://www.plazr.net", class: 'input-xxlarge' %>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">Logo:</label>
+				<div class="controls logo">
+					<%= f.file_field :logo %>
+				</div>
+			</div>
+			<div class="pull-right buttons-top">
 				<a href="#sectionOne" class="btn btn-primary">Anterior</a>
 				<a href="#sectionThree" class="btn btn-primary">Continuar</a>
 			</div>
@@ -60,12 +87,12 @@
 	</div>
 </section>
 
-<section id="section-three" class="warp">
+<section id="section-three">
 	<div class="container">
-		<section>
+		<header>
 			<h2>Contactos</h2>
 			<p>Deve indicar os contactos da loja!</p>
-		</section>
+		</header>
 		<section>
 			<div class="control-group">
 				<label class="control-label">
@@ -75,16 +102,6 @@
 					<%= f.text_field :email, :required => true, :placeholder => "plazr@example.com", class: 'input-xxlarge' %>
 				</div>
 			</div>
-
-			<div class="control-group">
-				<label class="control-label">
-					<%= f.label :url, "URL Pretendido:" %>
-				</label>
-				<div class="controls">
-					<%= f.url_field :url, :placeholder => "http://www.plazr.net", class: 'input-xxlarge' %>
-				</div>
-			</div>
-
 			<div class="control-group">
 				<label class="control-label">
 					<%= f.label :phone, "Telefone da Loja:" %>
@@ -93,7 +110,7 @@
 					<%= f.text_field :phone, :required => false, :required => false, :placeholder => "911111111", class: 'input-xxlarge' %>
 				</div>
 			</div>
-			<div class="pull-right">
+			<div class="pull-right buttons-top">
 				<a href="#sectionTwo" class="btn btn-primary">Anterior</a>
 				<a href="#sectionFour" class="btn btn-primary">Continuar</a>
 			</div>
@@ -102,37 +119,58 @@
 	</div>
 </section>
 
-<section id="section-four" class="wrap">
+<section id="section-four">
 	<div class="container">
-		<section>
+		<header>
 			<h2>Localização</h2>
-		</section>
+			<p>Indique a morada da sua loja!</p>
+		</header>
 		<section>
-			<% gmaps4rails(@json) %>
-			<div>
-				<p>Morada<input id="address" type="textbox" placeholder ="Rua da Alegria, 26, Lordelo" /></p>
-				<p>Cidade<input id="city" type="textbox" placeholder="Guimarães" /></p>
-				<p>Código Postal<input id="codP1" type="number" maxlength= 4 placeholder="4815" />-<input id="codP2" type="number" maxlength= 3 placeholder="144" /></p>
-				<input type="button" value="Localizar no mapa" onclick="codeAddress()" />
+			<table class="pull-left">
+				<tr>
+					<td>Morada</td>
+					<td><%= f.text_field :adress, placeholder: "Rua da Alegria, 26, Lordelo", id: "address" %></td>
+				</tr>
+				<tr>
+					<td>Cidade</td>
+					<td><%= f.text_field :city, placeholder: "Guimarães", id: "city"	 %></td>
+				</tr>
+				<tr>
+					<td>Cod Postal</td>
+					<td><%= f.text_field :postal_code, placeholder: "1234-567", id: 'codP' %></td>
+				</tr>
+				<tr>
+					<td>
+						<input type="button" id="updated_map" value="Actualizar mapa" class="btn btn-info" />
+					</td>
+				</tr>
+			</table>
+
+<!-- 			<div class="location">
+				<% gmaps4rails(@json) %>
 			</div>
-			<div id="mapa" style="width:600px; height:320px"></div>
-			<div id="latlong">
-				<p>Latitude: <%= f.text_field :latitude, :placeholder => "39.5" %></p>
-				<p>Longitude: <%= f.text_field :longitude, :placeholder => "-8.3" %></p>
+		-->
+		<div class="pull-right">
+			<div class="pull-right buttons">
+				<a href="#sectionThree" class="btn btn-primary">Anterior</a>
+				<a href="#sectionFive" class="btn btn-primary">Continuar</a>
 			</div>
-			<p><input type="button" value="Localizar no mapa" onclick="codeLatLng()" /></p>
-		</section>
-	</div>
+			<div class="clearfix"></div>
+			<div id="mapa" class="" style="width:600px; height:280px"></div>
+		</div>
+		<div class="clearfix"></div>
+	</section>
+</div>
 </section>
 
-<section id="section-five" class="wrap">
+<section id="section-five">
 	<div class="container">
-		<section>
+		<header>
 			<h2>Concluído</h2>
 			<p>Muito obrigado! Por favor carregue em submeter para terminar.</p>
-		</section>
+		</header>
 		<section>
-			<p>Confirme por favor antes de submeter!.</p>
+			<p>Confirme por favor antes de submeter!</p>
 			<dl class="dl-horizontal">
 				<dt>Nome:</dt>
 				<dd><span class="name"></span></dd>
@@ -141,8 +179,8 @@
 				<dt>Telefone:</dt>
 				<dd><span class="tel"></span></dd>
 			</dl>
-			<div class="pull-right">
-				<a href="#sectionThree" class="btn btn-primary">Anterior</a>
+			<div class="pull-right buttons-top">
+				<a href="#sectionFour" class="btn btn-primary">Anterior</a>
 				<%= f.submit 'Submeter', class: 'btn btn-primary' %>
 			</div>
 			<div class="clearfix">

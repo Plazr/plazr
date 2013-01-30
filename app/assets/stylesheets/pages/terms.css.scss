@@ -1,0 +1,19 @@
+@import 'partials/functions';
+
+.scroll-container {
+	height: 410px;
+	overflow: auto;
+	position: top;
+}
+
+#terms{
+	padding-top: 70px;
+	@include container;
+	.checkbox-row {
+		input {
+			margin: 0;
+		}
+		padding-top: 1em;
+		padding-bottom: 1em;
+	}
+}

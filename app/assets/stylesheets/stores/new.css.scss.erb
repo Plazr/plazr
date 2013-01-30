@@ -1,0 +1,102 @@
+
+@import 'partials/colors';
+
+#stores {
+	padding-top: 70px;
+	.categories, .keywords {
+		float: left;
+	}
+	.categories {
+		padding-right: 1em;
+	}
+	.buttons {
+		a {
+			padding-right: 1em;
+		}
+	}
+}
+
+.progress-wrap {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	.progress {
+		height: 20px;
+		width: 100%;
+		background: $whiteTransparency;
+		.bar {
+			height: 100%;
+			width: 0;
+		}
+	}
+}
+
+
+#section-one, #section-two, #section-three, #section-four, #section-five {
+	width: 100%;
+	font-size: 20px;
+	.container {
+		border-radius: 15px;
+		> header {
+			padding: 0 1em 1em 1em;
+			margin-bottom: 1em;
+		}
+		> section {
+			position: relative;
+			font-size: 14px;
+			border-radius: 15px;
+			border: 1px solid #EEE;
+			padding: 1em;
+			// background-color: $whiteTransparency;
+			background-color: #F9F9F9;
+		}
+
+	}
+	h1, h2, h3 {
+		margin-top: 0;
+	}
+	.buttons-top {
+		position: absolute;
+		top: 1em;
+		right: 1em;
+	}
+	.control-group {
+		margin: 1em;
+	}
+}
+
+#section-one {
+	h1 {
+		padding-bottom: 20px;
+		font-size: 60px;
+	}
+	.container {
+		> section {
+			margin-bottom: 1em;
+		}
+		section {
+			label {
+				line-height: 26px;
+				vertical-align: center;
+				float: left;
+				padding-right: 1em;
+			}
+		}
+	}
+}
+
+#section-two {
+	.logo {
+		position: absolute;
+		input {
+			line-height: 1px;
+			vertical-align: middle;
+		}
+	}
+}
+
+#section-four {
+	.buttons {
+		padding-bottom: 10px;
+	}
+}

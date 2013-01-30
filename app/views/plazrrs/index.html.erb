@@ -1,5 +1,12 @@
+</br></br>
 <%= link_to "Show Stores", stores_path %><br>
-<%= link_to "Show Store Categories", store_categories_path %><br>
+<%= link_to "Show Store Categories", root_store_categories_path %><br>
 <%= link_to "Payment Methods", payment_methods_path %><br>
-
-
+<%= link_to "Show Users", root_users_path%><br>
+</br>
+<% if (current_user.nil?) %>
+	<%= link_to "Sign In", "users/sign_in"%></br>
+	<%= link_to "Sign Up", "users/sign_up"%>
+<% else %>
+	<%= link_to "Sign out", "users/sign_out"%>
+<% end %>

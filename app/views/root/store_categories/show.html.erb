@@ -1,0 +1,38 @@
+<h1>Category: <%= @category.title %></h1>
+  
+  Description: <%= @category.description %><br>
+
+<p>
+	<%= link_to "Edit", edit_root_store_category_path(@category) %>
+	<%= link_to "Delete", root_store_category_path(@category), method: :delete, data: { confirm: 'Are you sure?' } if (@subcategories.count==0) %>
+</p>
+
+<% if(@category.parent.nil?)%>
+  <h2>Subcategories</h2>
+
+  <ul>
+  <% @subcategories.each do |c| %>
+    
+      <li>
+      		<%= link_to c.title, root_store_category_path(c) %>
+    	</li>
+    
+  <% end %>
+  </ul>
+
+
+<%= link_to "Add Subcategory", new_root_store_category_path(:parent => @category.id) %>
+<%else%>
+
+
+<h2>Stores for this Category</h2>
+
+<ul>
+  	<% @category.stores.each do |store| %>
+    	<li><%= link_to store.name, root_store_path(store) %></li>
+  	<% end %>
+</ul>
+
+<% end %>
+<br><br>
+<%= link_to "Back to Store Categories", root_store_categories_path %>

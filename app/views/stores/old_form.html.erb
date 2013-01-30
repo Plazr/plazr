@@ -1,6 +1,6 @@
 <h1>New Store</h1>
 
-<%= simple_form_for @store do |f| %>
+<%= simple_form_for @store, :html => { :multipart => true } do |f| %>
 	<%= render "shared/error_messages", :target => @store %>
 	
 	<%= f.label :name, "Title" %>
@@ -13,6 +13,18 @@
 	<%= f.text_field :phone %><br>
 	<%= f.label :url, "URL" %>
 	<%= f.text_field :url %><br>
+
+	<%= f.label :adress, "Adress" %>
+	<%= f.text_field :adress %><br>
+
+	<%= f.label :postal_code, "Postal Code" %>
+	<%= f.text_field :postal_code %><br>
+
+	<%= f.label :city, "City" %>
+	<%= f.text_field :city %><br><br>
+
+	<%= f.file_field :logo %><br>
+	<%= f.file_field :banner %>
 
   <h3>Categories</h3>
   <div id='tasks'>
