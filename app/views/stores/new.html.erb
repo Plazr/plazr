@@ -1,7 +1,6 @@
 <% content_for :javascript_includes do %>
-	<%= javascript_include_tag :new_stores %>
+	<%= javascript_include_tag :new_store %>
 	<%= javascript_include_tag :maps %>
-	<%= javascript_include_tag "jquery.ba-hashchange.min" %>
 <% end %>
 
 <div class="progress-wrap">
@@ -12,7 +11,10 @@
 		</div>
 	</div>
 </div>
-<section id="section-one" class="wrap">
+
+<%= form_for(@store, html: {class: 'form-horizontal'}) do |f| %>
+
+<section id="section-one">
 	<div class="container">
 		<header>
 			<h1>Bem-Vindo ao Plazr!</h1>
@@ -28,7 +30,7 @@
 	</div>
 </section>
 
-<section id="section-two" class="wrap">
+<section id="section-two">
 	<div class="container">
 		<header>
 			<h2>Informação Básica</h2>
@@ -37,7 +39,7 @@
 		<section>
 			<div class="control-group">
 				<label class="control-label">
-					Insira uma descrição para a loja:
+					Descrição da loja:
 				</label>
 				<div class="controls">
 					<%= f.text_field :description, :rows => 2, :required => false, :placeholder => "O Plazr permite criar uma loja online.", class: 'input-xxlarge' %>
@@ -71,7 +73,7 @@
 				</div>
 			</div>
 			<div class="control-group">
-				<label class="control-label">Upload do logo</label>
+				<label class="control-label">Logo:</label>
 				<div class="controls logo">
 					<%= f.file_field :logo %>
 				</div>
@@ -85,7 +87,7 @@
 	</div>
 </section>
 
-<section id="section-three" class="warp">
+<section id="section-three">
 	<div class="container">
 		<header>
 			<h2>Contactos</h2>
@@ -117,7 +119,7 @@
 	</div>
 </section>
 
-<section id="section-four" class="wrap">
+<section id="section-four">
 	<div class="container">
 		<header>
 			<h2>Localização</h2>
@@ -161,7 +163,7 @@
 </div>
 </section>
 
-<section id="section-five" class="wrap">
+<section id="section-five">
 	<div class="container">
 		<header>
 			<h2>Concluído</h2>
@@ -179,9 +181,12 @@
 			</dl>
 			<div class="pull-right buttons-top">
 				<a href="#sectionFour" class="btn btn-primary">Anterior</a>
+				<%= f.submit 'Submeter', class: 'btn btn-primary' %>
 			</div>
 			<div class="clearfix">
 			</div>
 		</section>
 	</div>
 </section>
+
+<% end %>

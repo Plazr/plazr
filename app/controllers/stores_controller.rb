@@ -1,14 +1,14 @@
 class StoresController < ApplicationController
 
   before_filter :check_admin, only: [:new, :edit, :destroy]
- 
+
 
   def index
-    
+
     @store_categories = StoreCategory.where("parent IS NOT ?",nil)
 
     if params[:search] && params[:search]!='All'
-      
+
       @stores = []
 
       Store.all.each do |s|
@@ -22,8 +22,8 @@ class StoresController < ApplicationController
         @stores = []
 
         Store.all.each do |s|
-          if( s.name.upcase.include?(params[:keyword].upcase) || 
-              s.description.upcase.include?(params[:keyword].upcase) || 
+          if( s.name.upcase.include?(params[:keyword].upcase) ||
+              s.description.upcase.include?(params[:keyword].upcase) ||
               s.url.upcase.include?(params[:keyword].upcase)
               )
             @stores.push(s)
@@ -49,13 +49,13 @@ class StoresController < ApplicationController
     @categorize = @store.categorizes.build
     respond_to do |format|
     if @store.save
-      
+
       ## script local
       system('sh ../shared/create_store_local.sh '+@store.name.to_s.parameterize+' '+@store.id.to_s)
       ## script global
       #system('sh ../shared/create_store.sh '+@store.name.to_s.parameterize+' '+@store.id.to_s)
-	
-	  #unless current_user.roles.detect { |role| role.name == 'admin' }
+
+  	  #unless current_user.roles.detect { |role| role.name == 'admin' }
       #	current_user.roles << PlazrAuth::Role.find_by_name('admin')
       #end
 
@@ -66,11 +66,12 @@ class StoresController < ApplicationController
 
       format.html { redirect_to(@store, :notice => 'A sua loja foi criada com sucesso.') }
     else
+      puts "JEJEREJRJEJREJREJ"+@store.errors.inspect
       format.html { render :action => "new" }
     end
 
-    
-    
+
+
   end
 
   end
@@ -78,7 +79,7 @@ class StoresController < ApplicationController
     @store = Store.find(params[:id])
   end
   def destroy
-    @store = Store.find(params[:id])  
+    @store = Store.find(params[:id])
     system("kill -9 `lsof -wni tcp:30"+@store.id.to_s+" | grep ruby | awk '{ print  $2 }'`")
     system("rm -rf ../plazr_stores/"+@store.id.to_s+"_"+@store.name.to_s.parameterize)
     @store.destroy

@@ -1,0 +1,59 @@
+@import 'partials/colors';
+
+#page-prices {
+	padding-top: 120px;
+	.container {
+		padding: 1em 2em 0 2em;
+		background-color: white;
+	}
+}
+
+#page-prices table {
+	width: 100%;
+	// align prices to center
+	tr:nth-child(2) td {
+		text-align: center;
+	}
+	// padding in all cells
+	tr th, tr td {
+		padding: 0 1em 0 1em;
+		h2 {
+		}
+	}
+	tr th {
+		h2 {
+			color: white;
+		}
+		background-color: black;
+		padding: 10px;
+	}
+	tr th:nth-child(1) {
+		color: #808080;
+	}
+	tr th:nth-child(2) {
+		color: #76cac6;
+		border-left: 1px dotted white;
+		border-right: 1px dotted white;
+	}
+	tr th:nth-child(3) {
+		color: #76b572;
+	}
+	// tr th {
+	// 	-moz-border-radius-topright: 20px;
+	// 	border-top-right-radius: 20px;
+	// 	-moz-border-radius-topleft: 20px;
+	// 	border-top-left-radius: 20px;
+	// }
+	// tr th:nth-child(1) {
+	// 	background-color: #d5e4f5;
+	// 	color: #FF7C4B;
+	// }
+	// tr th:nth-child(2) {
+	// 	background-color: #d5e4f5;
+	// 	color: #FFD14B;
+	// }
+	// tr th:nth-child(3) {
+	// 	background-color: #d5e4f5;
+	// 	color: #3F87BA;
+	// }
+}

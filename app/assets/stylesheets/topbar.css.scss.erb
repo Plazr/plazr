@@ -1,0 +1,44 @@
+@import 'partials/colors';
+@import 'partials/fonts';
+
+@mixin hr-border-bottom {
+	border-bottom: 1px solid $color1;
+}
+
+.top-container {
+	width: 100%;
+	background-color: #000000;
+	color: $text;
+	position: fixed;
+	top: 0;
+ 	-webkit-box-shadow:  0 0 10px rgba(0, 0, 0, 0.5);
+ 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+ 	@include hr-border-bottom;
+ 	z-index: 1;
+ 	a {
+ 		color: $colorL;
+ 		&:hover {
+ 			text-decoration: none;
+ 		}
+ 	}
+ 	.top-bar {
+ 		padding: 0.4em 0 0.4em 0;
+ 		h3 {
+ 			background: url(<%= image_path('logo.png') %>) left top no-repeat;
+ 			background-size: auto 1.3em;
+ 			font-family: 'Tabitha';
+ 			padding-left: 1.4em;
+ 			margin: 0.1em 0 0.1em 0;
+
+ 		}
+ 	}
+ 	.navigation {
+ 		margin: 0;
+ 		padding: 10px;
+ 		li {
+ 			display: inline;
+ 			list-style-type: none;
+ 			padding-left: 20px;
+ 		}
+ 	}
+ }
