@@ -60,7 +60,7 @@ class Store < ActiveRecord::Base
   def copy_logo
     if self.logo.to_s.include?("/logos/original/missing.png")
       system("mkdir -p ../plazr_stores/#{id}_#{name.to_s.parameterize}/config")
-      system("echo 'logo_path: ""' >> ../plazr_stores/#{id}_#{name.to_s.parameterize}/config/config.yml")
+      system("echo 'logo_path: public/logo.png' >> ../plazr_stores/#{id}_#{name.to_s.parameterize}/config/config.yml")
     else
       system("mkdir -p ../plazr_stores/#{id}_#{name.to_s.parameterize}/public/assets/upload/logo/logo")
       system("cp #{logo.path} ../plazr_stores/#{id}_#{name.to_s.parameterize}/public/assets/upload/logo/logo")
