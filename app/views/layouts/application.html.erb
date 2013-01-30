@@ -2,13 +2,14 @@
 <html>
 <head>
 	<title>Plazr</title>
-<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
 	<%= stylesheet_link_tag "application", :media => "all" %>
 	<%= javascript_include_tag "application" %>
 	<%= yield :javascript_includes %>
 	<%= csrf_meta_tags %>
 </head>
 <body>
+
 	<div class="wrap top-container">
 		<div class="container">
 			<div class="row-fluid top-bar">
@@ -17,31 +18,41 @@
 				</div>
 				<div>
 					<ul class="navigation pull-right">
-						<li><a href="#section-two">O que oferece?</a></li>
-						<li><a href="#headerAboutUs">Como surgiu?</a></li>
-						<li><a href="https://www.facebook.com/plazr">Facebook</a></li>
+						<li><a href="/">Página Inicial</a></li>
+						<li><a href="/pages/about">Como surgiu?</a></li>
+						<li><a href="/pages/prices">Preços</a></li>
+						<% if user_signed_in? %>
+							<li><%= link_to 'Sair: '+current_user.to_s, plazr_auth.destroy_user_session_path %></li>
+						<% else %>
+							<li><%= link_to plazr_auth.new_user_session_path %></li>
+						<% end %>
 					</ul>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<!--
+	<% unless flash.empty? %>
+		<% flash.each do |name, msg| %>
+			<% if msg.is_a?(String) %>
+				<span class="text-info pull-right flash-messages">
+					<%= content_tag :div, msg, :id => "flash_#{name}" %>
+				</span>
+			<% end %>
+		<% end %>
+	<% end %>
+
 <% flash.each do |name, msg| %>
   <% if msg.is_a?(String) %>
     <%= content_tag :div, msg, :id => "flash_#{name}" %>
   <% end %>
 <% end %>
 
-<h1>Plazr</h1>
 
-<h2>Current User: <%= current_user.to_s %>
-	-->
+<%= yield %>
 
-	<%= yield %>
-
-	<footer>
-		<%= yield :scripts %>
-	</footer>
+<footer>
+	<%= yield :scripts %>
+</footer>
 </body>
 </html>

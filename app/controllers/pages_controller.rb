@@ -1,9 +1,13 @@
 class PagesController < ApplicationController
-  def prices
-    
-  end
+	def index
+	end
+	def about
+	end
+	def prices
 
-  def terms
+	end
 
-  end
+	def terms
+
+	end
 end
