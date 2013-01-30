@@ -10,3 +10,5 @@
 //= require jquery.scrollTo-min
 //= require bootstrap-scrollspy.js
 //= require_self
+//= require pages
+
