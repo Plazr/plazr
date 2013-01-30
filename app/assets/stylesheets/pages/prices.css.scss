@@ -1,4 +1,5 @@
 @import 'partials/colors';
+@import 'partials/functions';
 
 $colorFree: #808080;
 $colorBasic: #76cac6;
@@ -19,12 +20,7 @@ $borderColor: #EEE;
 
 #page-prices {
 	padding-top: 120px;
-	.container {
-		margin-top: 1em;
-		margin-bottom: 4em;
-		padding: 1em 2em 2em 2em;
-		background-color: white;
-	}
+	@include container;
 }
 
 #page-prices table {
