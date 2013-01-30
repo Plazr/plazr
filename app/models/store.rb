@@ -73,7 +73,7 @@ class Store < ActiveRecord::Base
   def copy_banner 
     if self.banner.to_s.include?("/banners/original/missing.png")
       system("mkdir -p ../plazr_stores/#{id}_#{name.to_s.parameterize}/config")
-      system("echo 'banner_path: ""' >> ../plazr_stores/#{id}_#{name.to_s.parameterize}/config/config.yml")
+      system("echo 'banner_path: public/banner.jpg' >> ../plazr_stores/#{id}_#{name.to_s.parameterize}/config/config.yml")
     else
       system("mkdir -p ../plazr_stores/#{id}_#{name.to_s.parameterize}/public/assets/upload/banner/banner")
       system("cp #{banner.path} ../plazr_stores/#{id}_#{name.to_s.parameterize}/public/assets/upload/banner/banner")
