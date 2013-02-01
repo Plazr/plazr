@@ -18,7 +18,7 @@
  * ============================================================== */
 
 
-!function ( $ ) {
+(function ( $ ) {
 
   "use strict"
 
@@ -104,4 +104,4 @@
     $('body').scrollSpy('[data-scrollspy] li > a')
   })
 
-}( window.$KOBJ );
+})(jQuery);
