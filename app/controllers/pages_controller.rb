@@ -9,5 +9,4 @@ class PagesController < ApplicationController
 	def terms
 
 	end
->>>>>>> monster pages update
 end
