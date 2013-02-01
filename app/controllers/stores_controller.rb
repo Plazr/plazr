@@ -67,7 +67,6 @@ class StoresController < ApplicationController
       format.html { redirect_to(@store, :notice => 'A sua loja foi criada com sucesso.') }
     else
       @store.get_unselected_categories
-      # puts "JEJEREJRJEJREJREJ"+@store.errors.inspect
       format.html { render :action => "new" }
     end
 

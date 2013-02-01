@@ -5,14 +5,14 @@ class Store < ActiveRecord::Base
 
   validates :name, :presence => { :message => "Nome da Loja e um campo obrigatorio." }
   validates :email, :presence => { :message => "Email da Loja e um campo obrigatorio." }
-  validates_format_of :email,
-  					  :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i,
-  					  :message => "O Email da Loja inserido esta invalido."
-  validates_format_of :url,
-                      :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$/ix,
-                      :allow_nil => true,
-                      :allow_blank => true,
-  					          :message => "O URL inserido esta invalido."
+  # validates_format_of :email,
+  # 					  :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i,
+  # 					  :message => "O Email da Loja inserido esta invalido."
+  # validates_format_of :url,
+  #                     :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$/ix,
+  #                     :allow_nil => true,
+  #                     :allow_blank => true,
+  # 					          :message => "O URL inserido esta invalido."
   validates_format_of :phone,
       			          :numericality => true,
       			          :length => { :minimum => 9, :maximum => 15 },
@@ -64,20 +64,20 @@ class Store < ActiveRecord::Base
     else
       system("mkdir -p ../plazr_stores/#{id}_#{name.to_s.parameterize}/public/assets/upload/logo/logo")
       system("cp #{logo.path} ../plazr_stores/#{id}_#{name.to_s.parameterize}/public/assets/upload/logo/logo")
-    
+
       system("mkdir ../plazr_stores/#{id}_#{name.to_s.parameterize}/config")
       system("echo 'logo_path: public/assets/upload/logo/logo/#{File.basename(logo.path)}' >> ../plazr_stores/#{id}_#{name.to_s.parameterize}/config/config.yml")
     end
   end
 
-  def copy_banner 
+  def copy_banner
     if self.banner.to_s.include?("/banners/original/missing.png")
       system("mkdir -p ../plazr_stores/#{id}_#{name.to_s.parameterize}/config")
       system("echo 'banner_path: ""' >> ../plazr_stores/#{id}_#{name.to_s.parameterize}/config/config.yml")
     else
       system("mkdir -p ../plazr_stores/#{id}_#{name.to_s.parameterize}/public/assets/upload/banner/banner")
       system("cp #{banner.path} ../plazr_stores/#{id}_#{name.to_s.parameterize}/public/assets/upload/banner/banner")
-    
+
       system("mkdir ../plazr_stores/#{id}_#{name.to_s.parameterize}/config")
       system("echo 'banner_path: public/assets/upload/banner/banner/#{File.basename(banner.path)}' >> ../plazr_stores/#{id}_#{name.to_s.parameterize}/config/config.yml")
     end
