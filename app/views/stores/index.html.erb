@@ -1,34 +1,41 @@
-<h1>Lojas </h1>
+<div id="stores">
+	<div class="container">
+		<div class="row-fluid page-header">
+			<h2>As nossas lojas</h2>
+		</div>
 
-<h2>Search</h2> 
-<%= form_tag stores_path, :method => 'get' do %>
-	<h3>Category
-    	<%= select_tag "search", options_for_select(["All"]+@store_categories.map{|a| [a.title,a.id]},params[:search]),{:onchange => 'this.form.submit()'}%>
-    </h3>
-<% end %>
+		<div class="row-fluid">
+			<div class="categories">
+				<%= form_tag stores_path, :method => 'get' do %>
+				<%= select_tag "search", options_for_select(["Todas"]+@store_categories.map{|a| [a.title,a.id]},params[:search]),{:onchange => 'this.form.submit()'}%>
+				<% end %>
+			</div>
+			<div class="input-append keywords">
+				<%= form_tag stores_path, :method => 'get' do %>
+				<%= text_field_tag :keyword, params[:keyword], id: 'appendedInputButton' %>
+				<%= submit_tag 'Pesquisar', class: 'btn' %>
+				<% end %>
+			</div>
+		</div>
 
-<%= form_tag stores_path, :method => 'get' do %>
-    <h3>Keyword
-    	<%= text_field_tag :keyword, params[:keyword] %>
-    	<%= submit_tag 'Search'%>
-    </h3>
-<% end %>
-
-<% if @stores.count > 0 %>
-	<ul>
-		<% @stores.each do |store| %>
-			<li>
-				<%= link_to store.name, store_path(store) %>
-				<% store_url = 3000 + store.id%>
-				<%= link_to "View Store >>", "http://localhost:" + store_url.to_s + "/" %>
-			</li>
-		<% end %>
-	</ul>
-<% else %>
-	Nenhuma loja disponível
-<% end %>
-
-<p>
-	<%= link_to "Criar Nova Loja",  new_store_path %><br>
-	<%= link_to "Voltar para a Página Principal",  plazrrs_path %>
-</p>
+		<div class="row-fluid">
+			<% if @stores.count > 0 %>
+			<table class="table">
+				<% @stores.each do |store| %>
+				<tr>
+					<td><%= link_to store.name, store_path(store) %></td>
+					<% store_url = 3000 + store.id%>
+					<td><%= link_to "View Store >>", "http://localhost:" + store_url.to_s + "/" %></td>
+				</tr>
+				<% end %>
+			</table>
+			<% else %>
+			<p>Não existem lojas!</p>
+			<% end %>
+		</div>
+		<div class="row-fluid buttons">
+			<%= link_to "Criar Nova Loja",  new_store_path %>
+			<%= link_to "Voltar para a Página Principal",  plazrrs_path %>
+		</div>
+	</div>
+</div>

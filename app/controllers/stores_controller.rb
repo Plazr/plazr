@@ -46,7 +46,7 @@ class StoresController < ApplicationController
     # @json = Store.all.to_gmaps4rails
     @store= Store.new(params[:store])
     # @store = Store.new
-    @categorize = @store.categorizes.build
+    # @categorize = @store.categorizes.build
     respond_to do |format|
     if @store.save
 
@@ -66,7 +66,7 @@ class StoresController < ApplicationController
 
       format.html { redirect_to(@store, :notice => 'A sua loja foi criada com sucesso.') }
     else
-      puts "JEJEREJRJEJREJREJ"+@store.errors.inspect
+      @store.get_unselected_categories
       format.html { render :action => "new" }
     end
 
@@ -77,6 +77,7 @@ class StoresController < ApplicationController
   end
   def edit
     @store = Store.find(params[:id])
+    @store.get_unselected_categories
   end
   def destroy
     @store = Store.find(params[:id])

@@ -1,0 +1,53 @@
+@import 'partials/fonts';
+@import 'partials/colors';
+
+
+@mixin hr-border-bottom {
+	border-bottom: 1px solid $color1;
+}
+
+.index-container {
+	@include hr-border-bottom;
+	background-color: white;
+	color: $text;
+	background-color: 100%;
+	.announcement {
+		h1 {
+			margin: 0 0 0.7em 0;
+			font-size: 72px;
+			line-height: 1;
+			.logo {
+				font-family: 'Tabitha';
+			}
+			small {
+				color: $text;
+			}
+		}
+		#subscribe-suggestion {
+			height: 1em;
+		}
+		.lead {
+			margin: 0 0 1.5em 0;
+		}
+	}
+}
+
+.about-container {
+	height: 100%;
+	background: image-url('we.JPG') no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	.head {
+		span {
+			padding: 0.1em;
+			background-color: rgba(255, 255, 255, 0.8);
+		}
+		padding: 0.3em;
+	}
+	.lead {
+		background-color: rgba(255, 255, 255, 0.8);
+		padding: 0.2em;
+	}
+}
