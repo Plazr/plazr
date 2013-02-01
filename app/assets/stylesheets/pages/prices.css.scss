@@ -19,7 +19,6 @@ $borderColor: #EEE;
 }
 
 #page-prices {
-	padding-top: 120px;
 	@include container;
 }
 
@@ -92,22 +91,4 @@ $borderColor: #EEE;
 	tr:last-child td:nth-child(3) a {
 		background: $colorProfessional;
 	}
-	// tr th {
-	// 	-moz-border-radius-topright: 20px;
-	// 	border-top-right-radius: 20px;
-	// 	-moz-border-radius-topleft: 20px;
-	// 	border-top-left-radius: 20px;
-	// }
-	// tr th:nth-child(1) {
-	// 	background-color: #d5e4f5;
-	// 	color: #FF7C4B;
-	// }
-	// tr th:nth-child(2) {
-	// 	background-color: #d5e4f5;
-	// 	color: #FFD14B;
-	// }
-	// tr th:nth-child(3) {
-	// 	background-color: #d5e4f5;
-	// 	color: #3F87BA;
-	// }
 }

@@ -24,7 +24,7 @@
 						<% if user_signed_in? %>
 							<li><%= link_to 'Sair: '+current_user.to_s, plazr_auth.destroy_user_session_path %></li>
 						<% else %>
-							<li><%= link_to plazr_auth.new_user_session_path %></li>
+							<li><%= link_to 'Iniciar Sessão', plazr_auth.new_user_session_path %></li>
 						<% end %>
 					</ul>
 				</div>
