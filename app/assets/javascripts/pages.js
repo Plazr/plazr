@@ -19,8 +19,5 @@ $(document).ready(function() {
 		$(window).resize();
 	}
 
-	$('#botao-de-coisas').click(function() {
-		$(this).hide();
-	})
 
 });

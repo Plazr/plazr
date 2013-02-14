@@ -65,7 +65,7 @@
       format.html {
         # redirect_to store_path (@store), :notice => 'Store was successfully created.'
         port = 3000 + @store.id
-        redirect_to 'http://ouassim.dyndns.org'+port.to_s
+        redirect_to 'http://ouassim.dyndns.org:'+port.to_s
       }
 
       format.html { redirect_to(@store, :notice => 'A sua loja foi criada com sucesso.') }

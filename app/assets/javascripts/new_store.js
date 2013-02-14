@@ -111,4 +111,9 @@ $(document).ready(function() {
 		tel.replaceWith($(this).val());
 	});
 
+	$('#botao-de-coisas').click(function() {
+		$(this).hide();
+	});
+
+
 });
