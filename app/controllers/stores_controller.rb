@@ -1,4 +1,4 @@
-class StoresController < ApplicationController
+  class StoresController < ApplicationController
 
   before_filter :check_admin, only: [:new, :edit, :destroy]
 
@@ -62,7 +62,11 @@ class StoresController < ApplicationController
 	  new_role = PlazrAuth::Role.create name: "admin_#{@store.id}"
 	  current_user.roles << new_role
 
-      format.html { redirect_to store_path (@store), :notice => 'Store was successfully created.' }
+      format.html {
+        # redirect_to store_path (@store), :notice => 'Store was successfully created.'
+        port = 3000 + @store.id
+        redirect_to 'http://ouassim.dyndns.org'+port.to_s
+      }
 
       format.html { redirect_to(@store, :notice => 'A sua loja foi criada com sucesso.') }
     else
